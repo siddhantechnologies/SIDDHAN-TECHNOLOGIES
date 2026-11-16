@@ -1407,15 +1407,6 @@
       </div>
 
       <div class="modal-body">
-        ${bookmarkedRoles.length > 0 ? `
-          <div class="saved-shortlist-toolbar">
-            <span>${bookmarkedRoles.length} saved role${bookmarkedRoles.length === 1 ? '' : 's'} ready to export</span>
-            <button class="btn-pdf-action" type="button" onclick="window.SiddhanTech.exportShortlistPDF()" title="Download the saved roles as a PDF">
-              <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
-              Download Saved Data as PDF
-            </button>
-          </div>
-        ` : ''}
         ${bookmarkedRoles.length === 0 ? `
           <div style="text-align: center; padding: 2.75rem 1rem;">
             <svg viewBox="0 0 24 24" width="40" height="40" stroke="var(--text-dim)" stroke-width="1.5" fill="none" style="margin-bottom: 0.85rem;"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
@@ -1448,6 +1439,10 @@
           </div>
 
           <div style="display: flex; flex-wrap: wrap; gap: 0.65rem; align-items: center; margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--border-subtle);">
+            <button class="btn-pdf-action" type="button" onclick="window.SiddhanTech.exportShortlistPDF()" title="Download the saved roles as a PDF" style="display: flex; align-items: center; gap: 0.4rem;">
+              <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+              Download PDF
+            </button>
             <button class="btn-reset-filters" onclick="window.SiddhanTech.printShortlistPDF()" title="Print / Save as PDF via Browser" style="display: flex; align-items: center; gap: 0.4rem;">
               <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
               Print

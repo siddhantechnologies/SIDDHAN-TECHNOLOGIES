@@ -78,6 +78,10 @@ const savedCoursesModal = document.getElementById('savedCoursesModal');
 const savedCoursesModalCount = document.getElementById('savedCoursesModalCount');
 const savedCoursesList = document.getElementById('savedCoursesList');
 const savedCoursesPdfBtn = document.getElementById('savedCoursesPdfBtn');
+const savedCoursesPrintBtn = document.getElementById('savedCoursesPrintBtn');
+const savedCoursesCsvBtn = document.getElementById('savedCoursesCsvBtn');
+const savedCoursesJsonBtn = document.getElementById('savedCoursesJsonBtn');
+const savedCoursesClearBtn = document.getElementById('savedCoursesClearBtn');
 const savedCourseNavCount = document.getElementById('savedCourseNavCount');
 const mobileSavedCourseNavCount = document.getElementById('mobileSavedCourseNavCount');
 const courseCompareNavCount = document.getElementById('courseCompareNavCount');
@@ -293,10 +297,12 @@ function renderSavedCoursesModal() {
   if (!savedCoursesList) return;
 
   const savedCards = Array.from(cards).filter(card => savedCourseCodes.has(getCardCourseCode(card)));
-  if (savedCoursesPdfBtn) savedCoursesPdfBtn.disabled = savedCards.length === 0;
+  const isEmpty = savedCards.length === 0;
+  [savedCoursesPdfBtn, savedCoursesPrintBtn, savedCoursesCsvBtn, savedCoursesJsonBtn, savedCoursesClearBtn]
+    .forEach(button => { if (button) button.disabled = isEmpty; });
   if (savedCoursesModalCount) {
     const count = savedCards.length;
-    savedCoursesModalCount.textContent = `${count} course${count === 1 ? '' : 's'} saved`;
+    savedCoursesModalCount.textContent = `Saved Courses Shortlist (${count})`;
   }
   savedCoursesList.replaceChildren();
 
@@ -354,7 +360,8 @@ function renderSavedCoursesModal() {
     const title = document.createElement('h3');
     title.textContent = course.title;
     const meta = document.createElement('p');
-    meta.textContent = `${course.duration} · ${course.hours}`;
+    meta.className = 'saved-course-industries';
+    meta.textContent = course.industries;
     details.append(badges, title, meta);
 
     const actions = document.createElement('div');
@@ -370,7 +377,8 @@ function renderSavedCoursesModal() {
     const removeButton = document.createElement('button');
     removeButton.className = 'shortlist-remove-btn';
     removeButton.type = 'button';
-    removeButton.textContent = 'Remove';
+    removeButton.innerHTML = '<svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
+    removeButton.title = 'Remove course';
     removeButton.setAttribute('aria-label', `Remove ${course.title} from shortlist`);
     removeButton.addEventListener('click', () => toggleSavedCourse(course.code));
     actions.append(viewButton, removeButton);
@@ -1964,9 +1972,105 @@ function downloadSavedCoursesPDF() {
   }
 }
 
+function getSavedCourseExportData() {
+  return Array.from(cards)
+    .filter(card => savedCourseCodes.has(getCardCourseCode(card)))
+    .map(extractCardData);
+}
+
+function downloadSavedCoursesData(format) {
+  const courses = getSavedCourseExportData();
+  if (!courses.length) return showToast('Save at least one course before exporting.');
+
+  let content;
+  let mimeType;
+  let extension;
+  if (format === 'csv') {
+    const columns = ['Course Code', 'Course Family', 'Course Name', 'Course Focus', 'Duration', 'Hours', 'Software Tools', 'Career Options', 'Overview'];
+    const quote = value => `"${String(value ?? '').replace(/"/g, '""')}"`;
+    const rows = courses.map(course => [
+      course.code, course.suite, course.title, course.industries, course.duration, course.hours,
+      (course.tools || []).join(' | '), (course.careers || []).join(' | '), course.responsibilities
+    ]);
+    content = `\uFEFF${[columns, ...rows].map(row => row.map(quote).join(',')).join('\r\n')}`;
+    mimeType = 'text/csv;charset=utf-8';
+    extension = 'csv';
+  } else {
+    content = JSON.stringify(courses, null, 2);
+    mimeType = 'application/json;charset=utf-8';
+    extension = 'json';
+  }
+
+  const blobUrl = URL.createObjectURL(new Blob([content], { type: mimeType }));
+  const link = document.createElement('a');
+  link.href = blobUrl;
+  link.download = `SIDDHAN_TECHNOLOGIES_Saved_Courses.${extension}`;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  setTimeout(() => URL.revokeObjectURL(blobUrl), 1000);
+  showToast(`Downloaded saved courses ${extension.toUpperCase()} file.`);
+}
+
+function printSavedCourses() {
+  const courses = getSavedCourseExportData();
+  if (!courses.length) return showToast('Save at least one course before printing.');
+
+  const printWindow = window.open('', '_blank');
+  if (!printWindow) return showToast('Allow the print window to open, then try again.');
+
+  const escapeHtml = value => String(value || '').replace(/[&<>"']/g, char => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  })[char]);
+  const courseRows = courses.map(course => `
+    <article class="course">
+      <div class="badges"><span>${escapeHtml(course.code)}</span><strong>${escapeHtml(course.suite)}</strong></div>
+      <h2>${escapeHtml(course.title)}</h2>
+      <p class="focus">${escapeHtml(course.industries)}</p>
+      <p><b>Duration:</b> ${escapeHtml(course.duration)} · <b>Hours:</b> ${escapeHtml(course.hours)}</p>
+      <p><b>Software:</b> ${escapeHtml((course.tools || []).join(', '))}</p>
+      <p><b>Career options:</b> ${escapeHtml((course.careers || []).join(', '))}</p>
+      <p><b>Overview:</b> ${escapeHtml(course.responsibilities)}</p>
+    </article>
+  `).join('');
+
+  printWindow.document.open();
+  printWindow.document.write(`<!doctype html><html><head><meta charset="utf-8"><title>Saved Courses Shortlist</title>
+    <style>
+      *{box-sizing:border-box}body{margin:0;padding:32px;font:14px/1.5 Arial,sans-serif;color:#172033}
+      header{padding:18px 20px;margin-bottom:22px;background:#0f172a;color:#fff;border-radius:10px}
+      header p{margin:4px 0 0;color:#bae6fd;font-size:12px;letter-spacing:.08em}
+      .course{padding:16px 18px;margin:0 0 14px;border:1px solid #d7dce5;border-radius:10px;break-inside:avoid}
+      .badges{display:flex;gap:8px;align-items:center;color:#64748b;font-size:11px;font-weight:bold}
+      .badges strong{padding:3px 8px;border:1px solid #f0abfc;border-radius:20px;color:#a21caf;background:#fdf4ff}
+      h2{margin:8px 0 4px;font-size:17px}.course p{margin:5px 0}.focus{color:#0284c7;font-weight:600}
+      @media print{body{padding:0}header,.course{break-inside:avoid}}
+    </style></head><body><header><strong>SIDDHAN TECHNOLOGIES</strong><p>COURSE MATRIX · SAVED SHORTLIST (${courses.length})</p></header>${courseRows}</body></html>`);
+  printWindow.document.close();
+  setTimeout(() => { printWindow.focus(); printWindow.print(); }, 300);
+}
+
+function clearSavedCourses() {
+  if (!savedCourseCodes.size) return;
+  savedCourseCodes.clear();
+  try {
+    localStorage.setItem(savedCoursesKey, '[]');
+  } catch (error) {
+    // Keep the cleared list for this session if browser storage is unavailable.
+  }
+  updateSavedCourseUI();
+  applyFilters();
+  renderSavedCoursesModal();
+  showToast('Saved courses cleared.');
+}
+
 // Bind PDF download buttons
 modalPdfBtn?.addEventListener('click', () => downloadCoursePDF(currentCourse));
 savedCoursesPdfBtn?.addEventListener('click', downloadSavedCoursesPDF);
+savedCoursesPrintBtn?.addEventListener('click', printSavedCourses);
+savedCoursesCsvBtn?.addEventListener('click', () => downloadSavedCoursesData('csv'));
+savedCoursesJsonBtn?.addEventListener('click', () => downloadSavedCoursesData('json'));
+savedCoursesClearBtn?.addEventListener('click', clearSavedCourses);
 
 // Expose public API
 window.SiddhanCourse = {
