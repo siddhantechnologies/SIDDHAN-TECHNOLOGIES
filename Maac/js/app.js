@@ -124,6 +124,7 @@
     applyFilters();
     bindEvents();
     openCareerRoleFromUrl();
+    if (new URLSearchParams(window.location.search).get('openWizard') === '1') openCareerWizard();
   }
 
   /**
@@ -157,15 +158,18 @@
    * Theme Support
    */
   function initTheme() {
-    const savedTheme = localStorage.getItem('siddhan_theme') || localStorage.getItem('iyal_theme') || localStorage.getItem('nexus3d_theme') || 'dark';
-    document.documentElement.setAttribute('data-theme', savedTheme);
+    if (window.SiddhanTheme) {
+      window.SiddhanTheme.init();
+      return;
+    }
+    document.documentElement.setAttribute('data-theme', 'dark');
   }
 
   function toggleTheme() {
     const current = document.documentElement.getAttribute('data-theme') || 'dark';
     const next = current === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', next);
-    localStorage.setItem('siddhan_theme', next);
+    if (window.SiddhanTheme) window.SiddhanTheme.set(next);
+    else document.documentElement.setAttribute('data-theme', next);
     showToast(`Switched to ${next} theme mode`, 'info');
   }
 
@@ -613,6 +617,237 @@
   /**
    * Render Career Pathways & Roadmaps (View 4)
    */
+  const PIPELINE_PHASE_REPORTS = {
+    'Pre-Production': {
+      purpose: 'Establish the visual direction and production-ready concept before detailed assets are built.',
+      activities: ['Research references, shape language, and mood boards.', 'Create thumbnail concepts, silhouette variations, and color keys.', 'Review the chosen direction with art leads and prepare an asset brief.'],
+      deliverables: ['Approved concept sheets and silhouette designs.', 'Visual references and an asset brief for modeling.']
+    },
+    'Asset Creation': {
+      purpose: 'Turn approved designs into detailed, production-ready 3D assets.',
+      activities: ['Block out forms and establish scale and proportions.', 'Sculpt or model the approved high-detail asset.', 'Prepare topology, UVs, and export settings for downstream work.'],
+      deliverables: ['Approved high-detail model and clean production mesh.', 'UV layout and source files ready for surfacing.']
+    },
+    'Costume & Garments': {
+      purpose: 'Design and simulate character clothing that fits the approved body and art direction.',
+      activities: ['Draft garment patterns and establish fit.', 'Simulate cloth drape, seams, and folds on the character.', 'Refine the garment for clean handoff to retopology and surfacing.'],
+      deliverables: ['Approved garment simulation and pattern files.', 'Cloth geometry ready for retopology and texture baking.']
+    },
+    'PBR Surfacing': {
+      purpose: 'Bake and author physically based materials that read consistently in the target renderer or engine.',
+      activities: ['Bake mesh maps and validate UV coverage.', 'Build material layers, masks, and texture variation.', 'Check roughness, metallic, normal, and packed channel values.'],
+      deliverables: ['Approved PBR texture set and material definitions.', 'Validated maps ready for engine integration.']
+    },
+    'Integration & World': {
+      purpose: 'Assemble optimized assets into a navigable game world with correct scale, lighting, and streaming behavior.',
+      activities: ['Import assets and configure materials, collision, and LODs.', 'Build Nanite-ready environments and dress the level.', 'Validate world organization, performance budgets, and traversal.'],
+      deliverables: ['Integrated level and organized world assets.', 'Playable environment ready for effects and gameplay setup.']
+    },
+    'Real-Time Dynamics': {
+      purpose: 'Add responsive real-time effects and lighting that support the world’s visual direction.',
+      activities: ['Build Niagara effects for key events and environment details.', 'Set up Lumen lighting and validate the intended mood.', 'Profile effects and lighting for the target runtime budget.'],
+      deliverables: ['Integrated Niagara effects and lighting setup.', 'Performance-reviewed scene ready for gameplay integration.']
+    },
+    'Gameplay Systems': {
+      purpose: 'Connect the assembled world to playable interactions and game logic.',
+      activities: ['Build reusable C++ systems and Blueprint logic.', 'Connect input, interaction, and level events.', 'Test gameplay loops and resolve integration issues.'],
+      deliverables: ['Working gameplay systems and Blueprint assets.', 'Tested playable build for review.']
+    },
+    'Matchmove / Previs': {
+      purpose: 'Establish camera movement and scene staging that align digital elements with the live-action plate.',
+      activities: ['Track camera motion and solve lens and scene scale.', 'Stage proxy geometry and previs elements.', 'Review the solve against plate movement and editorial timing.'],
+      deliverables: ['Approved camera solve and scene layout.', 'Track package for asset and animation teams.']
+    },
+    'Asset & Modeling': {
+      purpose: 'Create clean, correctly scaled assets that meet the show’s modeling and topology standards.',
+      activities: ['Build forms from approved reference and scan data.', 'Refine quad topology, UVs, and subdivision behavior.', 'Publish versioned assets for rigging and look development.'],
+      deliverables: ['Approved production model with clean topology.', 'UVs and organized scene files.']
+    },
+    'Rigging & CFX': {
+      purpose: 'Prepare characters and costumes for reliable deformation and simulation.',
+      activities: ['Build or refine skeletons, controls, and deformation systems.', 'Set up cloth, hair, and secondary simulations.', 'Run stress poses and cache tests for shot use.'],
+      deliverables: ['Animation-ready rig and approved simulation setup.', 'Validated caches and handoff notes.']
+    },
+    'Character Animation': {
+      purpose: 'Create clear, performance-driven character motion that fits the shot and story.',
+      activities: ['Block poses and timing against the editorial reference.', 'Refine body mechanics, facial performance, and transitions.', 'Review motion with the animation lead and publish caches.'],
+      deliverables: ['Approved character animation and shot cache.', 'Final motion ready for lighting and compositing.']
+    },
+    'LookDev & Lighting': {
+      purpose: 'Define material response and lighting so rendered assets match the show’s visual standard.',
+      activities: ['Build physically based shaders and look-development turntables.', 'Set shot lighting and render passes or AOVs.', 'Check continuity, exposure, and render settings.'],
+      deliverables: ['Approved shader and lighting setup.', 'Render-ready scene with organized AOVs.']
+    },
+    'Prep & Roto': {
+      purpose: 'Prepare clean plate elements and mattes for seamless visual-effects integration.',
+      activities: ['Remove unwanted objects and repair plate areas.', 'Create and refine mattes for hair, motion, and foreground elements.', 'Track edges and check matte quality across the shot.'],
+      deliverables: ['Clean plate and approved roto mattes.', 'Versioned elements ready for compositing.']
+    },
+    'Final Compositing': {
+      purpose: 'Combine rendered elements and live-action plates into a cohesive final image.',
+      activities: ['Integrate CG passes, deep data, and plate elements.', 'Match color, grain, edges, and atmospheric depth.', 'Review the shot at delivery resolution and publish a final comp.'],
+      deliverables: ['Approved final composite and project script.', 'Review render ready for final delivery.']
+    },
+    'Ingest & Dailies': {
+      purpose: 'Safely ingest camera media and prepare verified editorial dailies.',
+      activities: ['Create verified copies with checksums and consistent naming.', 'Organize camera, audio, and metadata.', 'Prepare synced proxies and dailies for editorial review.'],
+      deliverables: ['Verified media copies and organized project structure.', 'Synced dailies and handoff report.']
+    },
+    'Narrative Edit': {
+      purpose: 'Shape footage into a coherent story cut while maintaining sync and editorial continuity.',
+      activities: ['Review footage and organize selects.', 'Build the narrative cut and sync multi-camera media.', 'Refine pacing and prepare a review export.'],
+      deliverables: ['Versioned editorial timeline and review cut.', 'Organized media and edit notes for post-production.']
+    },
+    'Sound Sweetening': {
+      purpose: 'Clean and balance dialogue, effects, and music for a polished mix.',
+      activities: ['Reduce noise and repair dialogue where needed.', 'Balance tracks, add sound design, and build the mix.', 'Check loudness and playback translation.'],
+      deliverables: ['Clean dialogue and final audio mix.', 'Stems and mix notes for mastering.']
+    },
+    'Motion & Titles': {
+      purpose: 'Create clear titles and motion graphics that support the edit and brand.',
+      activities: ['Design title frames and lower-third layouts.', 'Animate typography and graphic transitions.', 'Check timing, safe areas, and readability in context.'],
+      deliverables: ['Approved title and motion-graphics package.', 'Rendered or linked graphics for the edit.']
+    },
+    'DI Color Grading': {
+      purpose: 'Match shots and establish the final color look for the intended display format.',
+      activities: ['Balance exposure and match shots across scenes.', 'Apply creative look and manage LUTs.', 'Validate HDR or SDR trims and monitor consistency.'],
+      deliverables: ['Approved graded master and color-managed timeline.', 'LUTs and review references.']
+    },
+    'Online Mastering': {
+      purpose: 'Conform the approved edit and package the final master to delivery specifications.',
+      activities: ['Relink full-resolution media and conform the locked edit.', 'Check titles, audio, color, and frame accuracy.', 'Create and verify the required cinema or broadcast package.'],
+      deliverables: ['Quality-checked final master and delivery package.', 'Technical report and verified copies.']
+    },
+    'Blueprints': {
+      purpose: 'Translate architectural plans into a reliable digital foundation for visualization.',
+      activities: ['Review CAD drawings, dimensions, and reference documents.', 'Resolve scale and layer organization.', 'Prepare clean plans for structural modeling.'],
+      deliverables: ['Verified, organized CAD project.', 'Dimensional references for the modeling team.']
+    },
+    'Structure Modeling': {
+      purpose: 'Build the architectural shell and primary interior forms to match the approved plans.',
+      activities: ['Model exterior and interior structures to scale.', 'Organize geometry and reusable building elements.', 'Check dimensions, normals, and scene performance.'],
+      deliverables: ['Accurate architectural model and organized scene.', 'Approved structure ready for furnishings and lighting.']
+    },
+    'Soft Goods': {
+      purpose: 'Add believable fabric elements that complete the interior while preserving realistic scale and drape.',
+      activities: ['Create bedding, curtains, and soft furnishings.', 'Tune cloth simulation and folds.', 'Prepare clean geometry and materials for rendering.'],
+      deliverables: ['Approved cloth and furnishing assets.', 'Scene-ready soft goods with material assignments.']
+    },
+    'Offline Render': {
+      purpose: 'Produce photorealistic stills and sequences with controlled lighting and global illumination.',
+      activities: ['Set camera composition and lighting.', 'Tune materials, render quality, and global illumination.', 'Review noise, color, and final output dimensions.'],
+      deliverables: ['Approved high-resolution renders.', 'Reusable lighting and render settings.']
+    },
+    'Real-Time Twin': {
+      purpose: 'Convert the architectural visualization into an interactive real-time walkthrough.',
+      activities: ['Import and optimize the scene for real-time display.', 'Build navigation and interactive points of interest.', 'Validate streaming, lighting, and target-device performance.'],
+      deliverables: ['Interactive walkthrough and configured real-time scene.', 'Publish-ready build or Pixel Streaming setup.']
+    },
+    'Pattern Drafting': {
+      purpose: 'Create garment patterns and establish the fit before fabric simulation.',
+      activities: ['Draft pattern pieces from the design and measurements.', 'Arrange pieces and test fit on the avatar.', 'Revise construction details for the target garment.'],
+      deliverables: ['Approved pattern set and garment blockout.', 'Fit notes for simulation and fabric setup.']
+    },
+    'Fabric Physics': {
+      purpose: 'Tune cloth behavior so garments move and drape like their intended materials.',
+      activities: ['Set shear, stretch, and bending properties.', 'Simulate movement and inspect collision and drape.', 'Refine settings against fabric references.'],
+      deliverables: ['Approved fabric presets and simulation.', 'Stable cloth cache ready for surfacing.']
+    },
+    'PBR Weave Surfacing': {
+      purpose: 'Build material detail that communicates weave, fibers, and garment finish.',
+      activities: ['Author weave and micro-surface texture.', 'Tune roughness, color, and normal detail.', 'Validate the material under representative lighting.'],
+      deliverables: ['PBR fabric texture and material set.', 'Approved look for the garment presentation.']
+    },
+    'Game Retopology': {
+      purpose: 'Convert detailed garment or character meshes into efficient assets suitable for real-time use.',
+      activities: ['Create clean quad flow and target polygon budgets.', 'Prepare UVs and bake supporting maps.', 'Check deformation and shading in the target engine.'],
+      deliverables: ['Optimized game-ready mesh and UVs.', 'Baked maps ready for engine integration.']
+    },
+    'Virtual Lookbook': {
+      purpose: 'Present finished digital garments and avatars in a polished virtual retail experience.',
+      activities: ['Style the avatar and arrange a virtual scene.', 'Create camera moves, lighting, and product views.', 'Export review media for campaign and retail use.'],
+      deliverables: ['Approved virtual lookbook scene and renders.', 'Presentation video or interactive asset package.']
+    }
+  };
+
+  function openPipelinePhaseModal(pipelineId, stepIndex) {
+    const pipeline = ECOSYSTEM_STATS.pipelines.find(item => item.id === pipelineId);
+    const step = pipeline?.steps[stepIndex];
+    if (!pipeline || !step || !DOM.roleModal || !DOM.roleModalContent) return;
+
+    const previous = pipeline.steps[stepIndex - 1];
+    const next = pipeline.steps[stepIndex + 1];
+    const report = PIPELINE_PHASE_REPORTS[step.phase] || {};
+    const objective = report.purpose || `Complete ${step.role.toLowerCase()} as the ${step.phase.toLowerCase()} stage of this production pipeline.`;
+    const activities = report.activities || [
+      `Plan and execute ${step.role.toLowerCase()} using the listed production tools.`,
+      'Review the work against the project brief and pipeline requirements.',
+      'Resolve feedback and prepare approved files for the next production team.'
+    ];
+    const deliverables = report.deliverables || [
+      `Approved ${step.role.toLowerCase()} output.`,
+      `Organized project files ready for ${next ? next.phase.toLowerCase() : 'final delivery'}.`
+    ];
+    const software = step.software.split(/\s*[\/+]\s*/).map(item => item.trim()).filter(Boolean);
+    const phaseLabel = `Phase ${String(stepIndex + 1).padStart(2, '0')} of ${String(pipeline.steps.length).padStart(2, '0')}`;
+
+    DOM.roleModalContent.innerHTML = `
+      <div class="modal-header">
+        <div>
+          <div class="pipeline-tag">Studio Pipeline Phase Report · ${phaseLabel}</div>
+          <h2 style="font-size: 1.35rem;">${step.phase}</h2>
+          <div style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.25rem;">${pipeline.title}</div>
+        </div>
+        <button class="modal-close-btn" type="button" onclick="window.SiddhanTech.closeModal('roleModal')" aria-label="Close phase report">
+          <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="modal-body pipeline-phase-report">
+        <div class="pipeline-phase-role">${step.role}</div>
+        <div class="modal-detail-row">
+          <div class="modal-section-title">Phase Objective</div>
+          <p class="modal-text">${objective}</p>
+        </div>
+        <div class="modal-detail-row">
+          <div class="modal-section-title">Production Workflow</div>
+          <ul class="pipeline-report-list">${activities.map(item => `<li>${item}</li>`).join('')}</ul>
+        </div>
+        <div class="modal-detail-row">
+          <div class="modal-section-title">Key Deliverables</div>
+          <ul class="pipeline-report-list">${deliverables.map(item => `<li>${item}</li>`).join('')}</ul>
+        </div>
+        <div class="modal-detail-row">
+          <div class="modal-section-title">Software & Tools</div>
+          <div class="tools-chips-list">${software.map(item => `<a class="tool-tag modal-tool-tag" href="../Course/index.html?software=${encodeURIComponent(item)}" onclick="window.SiddhanTech.openCourseForSoftware('${escapeQuotes(item)}', event)" aria-label="Show courses that use ${item}">${item}</a>`).join('')}</div>
+        </div>
+        <div class="modal-highlight-box pipeline-handoff-box">
+          <div class="modal-section-title">Pipeline Handoff</div>
+          <p class="modal-text"><strong>Input:</strong> ${previous ? `${previous.phase} — ${previous.role}` : 'Approved project brief and references.'}</p>
+          <p class="modal-text"><strong>Next:</strong> ${next ? `${next.phase} — ${next.role}` : 'Final review and delivery.'}</p>
+        </div>
+      </div>
+      <div class="modal-footer pipeline-report-footer">
+        <span class="pipeline-tag">${phaseLabel}</span>
+        <button class="btn-primary-action" type="button" onclick="window.SiddhanTech.closeModal('roleModal')">Close Report</button>
+      </div>
+    `;
+
+    DOM.roleModal.classList.add('active');
+  }
+
+  function openCourseForSoftware(softwareName, event) {
+    event?.preventDefault();
+    if (window.parent !== window) {
+      window.parent.postMessage({
+        type: 'siddhan-portal-navigate',
+        view: 'course',
+        softwareName
+      }, '*');
+      return;
+    }
+    window.location.href = `../Course/index.html?software=${encodeURIComponent(softwareName)}`;
+  }
+
   function renderRoadmaps() {
     const container = document.getElementById('pipelinesContainer');
     if (!container) return;
@@ -627,7 +862,7 @@
 
         <div class="pipeline-steps-flow">
           ${pipe.steps.map((st, i) => `
-            <div class="step-card">
+            <div class="step-card" role="button" tabindex="0" onclick="window.SiddhanTech.openPipelinePhaseModal('${pipe.id}', ${i})" onkeydown="if(event.key === 'Enter' || event.key === ' '){event.preventDefault();window.SiddhanTech.openPipelinePhaseModal('${pipe.id}', ${i})}" aria-haspopup="dialog" aria-controls="roleModal" aria-label="Open detailed report for ${st.phase}">
               <span class="step-number">PHASE 0${i + 1}</span>
               <div class="step-phase">${st.phase}</div>
               <div class="step-role">${st.role}</div>
@@ -949,7 +1184,7 @@
             <button class="wizard-option-btn" onclick="window.SiddhanTech.setWizardAnswer('passion', 'realtime_games')">
               <div>
                 <strong>Interactive Games & Real-Time Worlds</strong>
-                <div style="font-size: 0.78rem; color: var(--text-dim); margin-top: 2px;">C++, Blueprints, Level Design, Niagara VFX, Nanite environments (UE5, 3ds Max)</div>
+                <div style="font-size: 0.78rem; color: var(--text-dim); margin-top: 2px;">C++, Blueprints, Level Design, Niagara VFX, Nanite environments (Unreal Engine 5, 3ds Max)</div>
               </div>
               <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
             </button>
@@ -1080,13 +1315,13 @@
             Based on your passion for <strong>${formatAnswer(state.wizardAnswers.passion)}</strong> and your <strong>${formatAnswer(state.wizardAnswers.profile)}</strong> style, here are your best-aligned industry paths at SIDDHAN TECHNOLOGIES:
           </p>
 
-          <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+          <div class="wizard-match-list">
             ${matches.map(role => {
               const sw = SOFTWARE_METADATA[role.softwareKey] || {};
               return `
-                <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-medium); border-left: 4px solid ${sw.color}; border-radius: var(--radius-md); padding: 1.15rem;">
-                  <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.4rem;">
-                    <div>
+                <div class="wizard-match-card" style="--match-color: ${sw.color};">
+                  <div class="wizard-match-header">
+                    <div class="wizard-match-meta">
                       <span class="role-id-badge" style="font-size: 0.7rem;">${role.id}</span>
                       <span class="role-sw-badge ${sw.badgeClass}" style="margin-left: 0.35rem;">${sw.name}</span>
                     </div>
@@ -1095,11 +1330,16 @@
                   <h4 style="font-size: 1.05rem; margin-bottom: 0.35rem;">${role.title}</h4>
                   <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 0.75rem;">${role.responsibilities}</p>
                   
-                  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
-                    <div style="font-size: 0.75rem; color: var(--text-dim);">${role.hubs.slice(0, 3).join(', ')}</div>
-                    <button class="btn-card-details" style="flex: 0 0 auto; padding: 0.35rem 0.75rem;" onclick="window.SiddhanTech.closeModal('wizardModal'); window.SiddhanTech.openRoleModal('${role.id}')">
+                  <div class="wizard-match-footer">
+                    <div class="wizard-match-hubs">${role.hubs.slice(0, 3).join(', ')}</div>
+                    <div class="wizard-match-actions">
+                    <button class="btn-card-details" type="button" onclick="window.SiddhanTech.closeModal('wizardModal'); window.SiddhanTech.openRoleModal('${role.id}')">
                       Explore Role
                     </button>
+                    <button class="btn-card-details wizard-explore-course" type="button" onclick="window.SiddhanTech.closeModal('wizardModal'); window.SiddhanTech.openCourseForSoftware('${escapeQuotes(role.software)}')">
+                      Explore Course
+                    </button>
+                    </div>
                   </div>
                 </div>
               `;
@@ -1167,6 +1407,15 @@
       </div>
 
       <div class="modal-body">
+        ${bookmarkedRoles.length > 0 ? `
+          <div class="saved-shortlist-toolbar">
+            <span>${bookmarkedRoles.length} saved role${bookmarkedRoles.length === 1 ? '' : 's'} ready to export</span>
+            <button class="btn-pdf-action" type="button" onclick="window.SiddhanTech.exportShortlistPDF()" title="Download the saved roles as a PDF">
+              <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+              Download Saved Data as PDF
+            </button>
+          </div>
+        ` : ''}
         ${bookmarkedRoles.length === 0 ? `
           <div style="text-align: center; padding: 2.75rem 1rem;">
             <svg viewBox="0 0 24 24" width="40" height="40" stroke="var(--text-dim)" stroke-width="1.5" fill="none" style="margin-bottom: 0.85rem;"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
@@ -1199,10 +1448,6 @@
           </div>
 
           <div style="display: flex; flex-wrap: wrap; gap: 0.65rem; align-items: center; margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--border-subtle);">
-            <button class="btn-pdf-action" onclick="window.SiddhanTech.exportShortlistPDF()" title="Download PDF Dossier">
-              <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-              Download PDF
-            </button>
             <button class="btn-reset-filters" onclick="window.SiddhanTech.printShortlistPDF()" title="Print / Save as PDF via Browser" style="display: flex; align-items: center; gap: 0.4rem;">
               <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
               Print
@@ -1306,6 +1551,7 @@
    */
   function switchView(viewName) {
     state.activeView = viewName;
+    document.body.dataset.activeView = viewName;
 
     // Toggle desktop nav tab active classes
     DOM.navTabs.forEach(btn => {
@@ -2680,6 +2926,8 @@ Official Contact: +91 96007 47753 | siddhantechnologies@gmail.com`;
   // Expose Global Public API for SIDDHAN TECHNOLOGIES
   window.SiddhanTech = {
     openRoleModal,
+    openPipelinePhaseModal,
+    openCourseForSoftware,
     closeModal,
     toggleBookmark,
     toggleCompare,
@@ -2708,9 +2956,15 @@ Official Contact: +91 96007 47753 | siddhantechnologies@gmail.com`;
   };
 
   window.addEventListener('message', event => {
-    if (event.source !== window.parent || event.data?.type !== 'siddhan-portal-filter-hub') return;
-    const hubName = String(event.data.hubName || '').trim();
-    if (hubName) filterByHub(hubName);
+    if (event.source !== window.parent) return;
+    if (event.data?.type === 'siddhan-portal-open-career-wizard') {
+      openCareerWizard();
+      return;
+    }
+    if (event.data?.type === 'siddhan-portal-filter-hub') {
+      const hubName = String(event.data.hubName || '').trim();
+      if (hubName) filterByHub(hubName);
+    }
   });
 
   // Backwards compatibility aliases

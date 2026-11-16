@@ -710,7 +710,7 @@ const ROLES_DATA = [
     demandLevel: "Explosive",
     level: "Senior / TD",
     category: "Tech Art & Code",
-    portfolioTip: "Demonstrate a procedural environment generated via UE5 PCG framework, accompanied by custom HLSL/Material graph shaders.",
+    portfolioTip: "Demonstrate a procedural environment generated via Unreal Engine 5 PCG framework, accompanied by custom HLSL/Material graph shaders.",
     dayInTheLife: "Building complex master materials with vertex painting and RVT, diagnosing GPU bottlenecks via Unreal Insights."
   },
   {
@@ -801,7 +801,7 @@ const ROLES_DATA = [
     level: "Senior / TD",
     category: "Tech Art & Code",
     portfolioTip: "An industrial factory digital twin demo with real-time sensor IoT telemetry feeds mapped to 3D machinery and physics.",
-    dayInTheLife: "Connecting external sensor API sockets to Unreal actors, integrating physics-based vehicle dynamics, building VR training scenarios."
+    dayInTheLife: "Connecting external sensor API sockets to Unreal Engine actors, integrating physics-based vehicle dynamics, building VR training scenarios."
   },
   {
     id: "UE5-11",

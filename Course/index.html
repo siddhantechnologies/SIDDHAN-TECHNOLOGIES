@@ -1,14 +1,15 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SIDDHAN TECHNOLOGIES | Course &amp; Software Topic Mapping</title>
+  <script src="../theme.js"></script>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='4' y1='2' x2='32' y2='34' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0%25' stop-color='%2338bdf8'/%3E%3Cstop offset='50%25' stop-color='%236366f1'/%3E%3Cstop offset='100%25' stop-color='%23ec4899'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpolygon points='18,3 32,10.5 32,25.5 18,33 4,25.5 4,10.5' fill='url(%23g)'/%3E%3Cpolygon points='18,8 28,13.5 18,18 8,13.5' fill='%23ffffff' opacity='0.35'/%3E%3Cpolygon points='18,13 22,18 18,23 14,18' fill='%23ffffff'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=20261116-5" />
   <!-- jsPDF Engine (Local offline first with CDN fallback) -->
   <script src="js/jspdf.umd.min.js"></script>
   <script>
@@ -152,6 +153,11 @@
           <span class="saved-courses-badge" id="savedCourseNavCount">0</span>
         </button>
 
+        <a href="../Maac/index.html?openWizard=1" class="btn-find-path" onclick="window.SiddhanCourse.openCareerWizard(event)" title="Find your career path" aria-label="Open the 3-step career pathway matcher">
+          <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><path d="M12 3v3m0 12v3M3 12h3m12 0h3"></path><circle cx="12" cy="12" r="7"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+          <span class="find-path-label">Find My Path</span>
+        </a>
+
         <!-- CTA Button -->
         <a href="#contact" class="btn-primary-action btn btn-cta">
           <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
@@ -162,8 +168,8 @@
     </div>
   </header>
 
-  <!-- Mobile Fixed Bottom Navigation Bar (Unified with Career Matrix) -->
-  <nav class="mobile-bottom-nav">
+  <!-- Mobile navigation shared with the Career Matrix -->
+  <nav class="mobile-bottom-nav" aria-label="Mobile navigation">
     <button class="mobile-nav-item active" data-view="cards" onclick="window.switchView('cards')">
       <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
       <span>Catalog</span>
@@ -171,7 +177,7 @@
 
     <button class="mobile-nav-item" data-view="table" onclick="window.switchView('table')">
       <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"></path></svg>
-      <span>Table</span>
+      <span>Matrix</span>
     </button>
 
     <button class="mobile-nav-item" data-view="analytics" onclick="window.switchView('analytics')">
@@ -184,9 +190,15 @@
       <span>Domains</span>
     </button>
 
-    <a href="#contact" class="mobile-nav-item">
-      <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-      <span>Enquire</span>
+    <button class="mobile-nav-item" type="button" data-mobile-action="saved" onclick="window.SiddhanCourse.openSavedCourses()" aria-label="Open saved courses">
+      <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+      <span>Saved</span>
+      <span class="mobile-nav-badge" id="mobileSavedCourseNavCount" style="display:none;">0</span>
+    </button>
+
+    <a href="../Maac/index.html" class="mobile-nav-item mobile-portal-btn" data-portal-link="career" title="Open Career Matrix">
+      <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+      <span>Career</span>
     </a>
   </nav>
 
@@ -360,7 +372,7 @@
             </div>
             <div class="role-footer">
               <div class="career-tags">
-                <span class="career-tag">Realtime 3D Artist</span><span class="career-tag">Environment Artist</span><span class="career-tag">Unreal Developer</span>
+                <span class="career-tag">Realtime 3D Artist</span><span class="career-tag">Environment Artist</span><span class="career-tag">Unreal Engine Developer</span>
               </div>
               <button class="btn-card-details" type="button" aria-label="View Course Blueprint">
                 <span>View Blueprint</span>
@@ -705,23 +717,23 @@
           <div class="analytics-panel full-width">
             <h3 class="panel-title">Production Domain Coverage</h3>
             <div class="domain-chips-grid">
-              <div class="domain-chip"><span>3D Modeling &amp; Animation</span><strong>3 tools</strong></div>
+              <div class="domain-chip"><span>3D Modeling &amp; Animation</span><strong>4 tools</strong></div>
               <div class="domain-chip"><span>Texturing &amp; LookDev</span><strong>5 tools</strong></div>
               <div class="domain-chip"><span>Rendering &amp; Lighting</span><strong>4 tools</strong></div>
-              <div class="domain-chip"><span>Digital Sculpting</span><strong>2 tools</strong></div>
-              <div class="domain-chip"><span>VFX, Compositing &amp; Matchmove</span><strong>3 tools</strong></div>
-              <div class="domain-chip"><span>Video Editing, Motion &amp; Audio</span><strong>6 tools</strong></div>
+              <div class="domain-chip"><span>Digital Sculpting</span><strong>3 tools</strong></div>
+              <div class="domain-chip"><span>VFX, Compositing &amp; Matchmove</span><strong>4 tools</strong></div>
+              <div class="domain-chip"><span>Video Editing, Motion &amp; Audio</span><strong>7 tools</strong></div>
               <div class="domain-chip"><span>2D Animation &amp; Storyboarding</span><strong>3 tools</strong></div>
               <div class="domain-chip"><span>Graphic Design &amp; Photography</span><strong>5 tools</strong></div>
               <div class="domain-chip"><span>UI/UX &amp; Web Development</span><strong>11 tools</strong></div>
               <div class="domain-chip"><span>Game Engines &amp; Creative AI</span><strong>3 tools</strong></div>
-              <div class="domain-chip"><span>3D Cloth &amp; Simulation</span><strong>1 tool</strong></div>
-              <div class="domain-chip"><span>3D Grooming &amp; Instancing</span><strong>1 tool</strong></div>
-              <div class="domain-chip"><span>3D FX &amp; Simulation</span><strong>1 tool</strong></div>
+              <div class="domain-chip"><span>3D Cloth &amp; Simulation</span><strong>2 tools</strong></div>
+              <div class="domain-chip"><span>3D Grooming &amp; Instancing</span><strong>2 tools</strong></div>
+              <div class="domain-chip"><span>3D FX &amp; Simulation</span><strong>2 tools</strong></div>
               <div class="domain-chip"><span>Character Animation &amp; MoCap</span><strong>1 tool</strong></div>
               <div class="domain-chip"><span>Photogrammetry &amp; Scanning</span><strong>1 tool</strong></div>
-              <div class="domain-chip"><span>3D Motion Graphics</span><strong>1 tool</strong></div>
-              <div class="domain-chip"><span>Architectural &amp; Set Modeling</span><strong>1 tool</strong></div>
+              <div class="domain-chip"><span>3D Motion Graphics &amp; Design</span><strong>2 tools</strong></div>
+              <div class="domain-chip"><span>Architectural &amp; Set Modeling</span><strong>3 tools</strong></div>
             </div>
           </div>
 
@@ -745,8 +757,8 @@
               </tr>
             </thead>
                         <tbody>
-              <tr><td class="mono">9102-AD3DEP-A-1022</td><td><span class="suite-chip" style="--c:#06b6d4">3D Animation</span></td><td>1022 · AD3D Edge PLUS — Animation Specialization</td><td>12.5 mo</td><td>602</td><td>Maya, 3ds Max, Substance Painter, Arnold, Unreal</td><td>3D Character Animator, Rigger, LookDev</td><td><button class="table-blueprint-btn" type="button">View Blueprint &rarr;</button></td></tr>
-              <tr><td class="mono">9102-3DRTD-1021</td><td><span class="suite-chip" style="--c:#06b6d4">3D Animation</span></td><td>1021 · 3D and Realtime Design Plus</td><td>8 mo</td><td>384</td><td>Maya, ZBrush, Marvelous Designer, Unreal 5</td><td>Realtime 3D Artist, Environment Artist</td><td><button class="table-blueprint-btn" type="button">View Blueprint &rarr;</button></td></tr>
+              <tr><td class="mono">9102-AD3DEP-A-1022</td><td><span class="suite-chip" style="--c:#06b6d4">3D Animation</span></td><td>1022 · AD3D Edge PLUS — Animation Specialization</td><td>12.5 mo</td><td>602</td><td>Maya, 3ds Max, Substance Painter, Arnold, Unreal Engine</td><td>3D Character Animator, Rigger, LookDev</td><td><button class="table-blueprint-btn" type="button">View Blueprint &rarr;</button></td></tr>
+              <tr><td class="mono">9102-3DRTD-1021</td><td><span class="suite-chip" style="--c:#06b6d4">3D Animation</span></td><td>1021 · 3D and Realtime Design Plus</td><td>8 mo</td><td>384</td><td>Maya, ZBrush, Marvelous Designer, Unreal Engine 5</td><td>Realtime 3D Artist, Environment Artist</td><td><button class="table-blueprint-btn" type="button">View Blueprint &rarr;</button></td></tr>
               <tr><td class="mono">9102-BLENDER-PRO</td><td><span class="suite-chip" style="--c:#06b6d4">3D Animation</span></td><td>9102 · Blender Pro</td><td>4 mo</td><td>192</td><td>Blender 4.x, Geometry Nodes, Cycles, Eevee</td><td>Blender 3D Artist, 3D Modeler, Procedural Artist</td><td><button class="table-blueprint-btn" type="button">View Blueprint &rarr;</button></td></tr>
               <tr><td class="mono">9102-MayaPro-A-1022</td><td><span class="suite-chip" style="--c:#06b6d4">3D Animation</span></td><td>1022 · MayaPro — Animation Specialization</td><td>4 mo</td><td>192</td><td>Maya, ZBrush, MotionBuilder, Arnold</td><td>Character Animator, MoCap Artist, Creature TD</td><td><button class="table-blueprint-btn" type="button">View Blueprint &rarr;</button></td></tr>
               <tr><td class="mono">9103-CEP-1031</td><td><span class="suite-chip" style="--c:#f59e0b">VFX &amp; Editing</span></td><td>1031 · Compositing and Editing Plus</td><td>10 mo</td><td>480</td><td>Premiere Pro, Nuke, After Effects, Resolve, Audition</td><td>Video Editor, Nuke Compositor, Colorist</td><td><button class="table-blueprint-btn" type="button">View Blueprint &rarr;</button></td></tr>
@@ -775,22 +787,22 @@
       <div id="viewDomains" class="view">
                 <div class="domains-grid-view">
           <div class="domain-block"><div class="db-icon">🎬</div><h4>2D Animation &amp; Storyboarding</h4><p>Toon Boom Harmony &bull; Storyboarder &bull; Adobe Animate CC</p><span class="db-count">3 tools</span></div>
-          <div class="domain-block"><div class="db-icon">👗</div><h4>3D Cloth &amp; Simulation</h4><p>Marvelous Designer</p><span class="db-count">1 tool</span></div>
-          <div class="domain-block"><div class="db-icon">🌊</div><h4>3D FX &amp; Simulation</h4><p>SideFX Houdini</p><span class="db-count">1 tool</span></div>
-          <div class="domain-block"><div class="db-icon">💇</div><h4>3D Grooming &amp; Instancing</h4><p>Autodesk Maya &ndash; XGen</p><span class="db-count">1 tool</span></div>
-          <div class="domain-block"><div class="db-icon">🧊</div><h4>3D Modeling &amp; Animation</h4><p>Autodesk 3ds Max &bull; Autodesk Maya &bull; Cinema 4D</p><span class="db-count">3 tools</span></div>
-          <div class="domain-block"><div class="db-icon">📡</div><h4>3D Motion Graphics &amp; Design</h4><p>Cinema 4D</p><span class="db-count">1 tool</span></div>
-          <div class="domain-block"><div class="db-icon">🏛️</div><h4>Architectural &amp; Set Modeling</h4><p>3ds Max &bull; Maya (Arch-Viz)</p><span class="db-count">2 tools</span></div>
+          <div class="domain-block"><div class="db-icon">👗</div><h4>3D Cloth &amp; Simulation</h4><p>Marvelous Designer &bull; Blender</p><span class="db-count">2 tools</span></div>
+          <div class="domain-block"><div class="db-icon">🌊</div><h4>3D FX &amp; Simulation</h4><p>Autodesk Maya &bull; Blender</p><span class="db-count">2 tools</span></div>
+          <div class="domain-block"><div class="db-icon">💇</div><h4>3D Grooming &amp; Instancing</h4><p>Autodesk Maya &ndash; XGen &bull; Blender</p><span class="db-count">2 tools</span></div>
+          <div class="domain-block"><div class="db-icon">🧊</div><h4>3D Modeling &amp; Animation</h4><p>Autodesk 3ds Max &bull; Autodesk Maya &bull; Cinema 4D &bull; Blender</p><span class="db-count">4 tools</span></div>
+          <div class="domain-block"><div class="db-icon">📡</div><h4>3D Motion Graphics &amp; Design</h4><p>Cinema 4D &bull; Blender</p><span class="db-count">2 tools</span></div>
+          <div class="domain-block"><div class="db-icon">🏛️</div><h4>Architectural &amp; Set Modeling</h4><p>3ds Max &bull; Maya (Arch-Viz) &bull; Blender</p><span class="db-count">3 tools</span></div>
           <div class="domain-block"><div class="db-icon">🏃</div><h4>Character Animation &amp; MoCap</h4><p>Autodesk MotionBuilder</p><span class="db-count">1 tool</span></div>
-          <div class="domain-block"><div class="db-icon">🗿</div><h4>Digital Sculpting</h4><p>Maxon ZBrush &bull; Autodesk Mudbox</p><span class="db-count">2 tools</span></div>
+          <div class="domain-block"><div class="db-icon">🗿</div><h4>Digital Sculpting</h4><p>Maxon ZBrush &bull; Autodesk Mudbox &bull; Blender</p><span class="db-count">3 tools</span></div>
           <div class="domain-block"><div class="db-icon">🎮</div><h4>Game Engines &amp; Creative AI</h4><p>Unreal Engine 5 &bull; Unity &bull; Creative AI</p><span class="db-count">3 tools</span></div>
           <div class="domain-block"><div class="db-icon">🎨</div><h4>Graphic Design &amp; Photography</h4><p>Photoshop &bull; Illustrator &bull; InDesign &bull; Lightroom &bull; Dimensions</p><span class="db-count">5 tools</span></div>
           <div class="domain-block"><div class="db-icon">📸</div><h4>Photogrammetry &amp; Scanning</h4><p>RealityCapture</p><span class="db-count">1 tool</span></div>
           <div class="domain-block"><div class="db-icon">☀️</div><h4>Rendering &amp; Lighting</h4><p>Arnold &bull; V-Ray &bull; Redshift &bull; Katana</p><span class="db-count">4 tools</span></div>
           <div class="domain-block"><div class="db-icon">🖌️</div><h4>Texturing &amp; LookDev</h4><p>Substance Painter &bull; Sampler &bull; Stager &bull; Quixel Mixer &bull; Substance Designer</p><span class="db-count">5 tools</span></div>
           <div class="domain-block"><div class="db-icon">💻</div><h4>UI/UX &amp; Web Development</h4><p>Figma &bull; XD &bull; HTML5 &bull; CSS &bull; Bootstrap &bull; Angular &bull; PHP &bull; WordPress &bull; Dreamweaver &bull; VS Code</p><span class="db-count">11 tools</span></div>
-          <div class="domain-block"><div class="db-icon">⚡</div><h4>VFX, Compositing &amp; Matchmove</h4><p>Foundry Nuke &bull; 3DEqualizer &bull; SynthEyes</p><span class="db-count">3 tools</span></div>
-          <div class="domain-block"><div class="db-icon">🎥</div><h4>Video Editing, Motion &amp; Audio</h4><p>After Effects &bull; Premiere Pro &bull; Final Cut Pro &bull; DaVinci Resolve &bull; Audition &bull; Rush</p><span class="db-count">6 tools</span></div>
+          <div class="domain-block"><div class="db-icon">⚡</div><h4>VFX, Compositing &amp; Matchmove</h4><p>Foundry Nuke &bull; 3DEqualizer &bull; SynthEyes &bull; Blender</p><span class="db-count">4 tools</span></div>
+          <div class="domain-block"><div class="db-icon">🎥</div><h4>Video Editing, Motion &amp; Audio</h4><p>After Effects &bull; Premiere Pro &bull; Final Cut Pro &bull; DaVinci Resolve &bull; Audition &bull; Rush &bull; Blender</p><span class="db-count">7 tools</span></div>
         </div>
       </div><!-- /viewDomains -->
 
@@ -1056,6 +1068,42 @@
     </div><!-- /modal-box -->
   </div><!-- /modal-overlay -->
 
+  <!-- ===== PRODUCTION DOMAIN DETAILS ===== -->
+  <div class="modal-overlay domain-modal-overlay" id="domainDetailModal" role="dialog" aria-modal="true" aria-labelledby="domainDetailTitle" aria-hidden="true">
+    <div class="modal-box domain-detail-box">
+      <div class="modal-header">
+        <div class="modal-top-row">
+          <div class="modal-badges">
+            <span class="modal-code">Production Domain</span>
+          </div>
+          <button class="modal-close-x" id="domainDetailCloseX" type="button" title="Close" aria-label="Close domain details">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+        <h2 class="modal-title" id="domainDetailTitle">Production Domain</h2>
+        <p class="modal-industries" id="domainDetailSummary"></p>
+        <div class="modal-divider"></div>
+      </div>
+      <div class="modal-body domain-detail-body">
+        <section class="modal-section">
+          <div class="modal-section-label">Related Software</div>
+          <div class="modal-tools" id="domainDetailSoftware"></div>
+        </section>
+        <section class="modal-section">
+          <div class="modal-section-label">Related Courses</div>
+          <div class="modal-tools" id="domainDetailCourses"></div>
+        </section>
+        <section class="modal-section">
+          <div class="modal-section-label">Related Jobs</div>
+          <div class="modal-tools" id="domainDetailJobs"></div>
+        </section>
+      </div>
+      <div class="modal-footer domain-detail-footer">
+        <button class="modal-btn-close" id="domainDetailCloseFooter" type="button">Close</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Saved Course Shortlist -->
   <div class="modal-overlay" id="savedCoursesModal" role="dialog" aria-modal="true" aria-label="Saved Courses Shortlist">
     <div class="modal-box saved-courses-box">
@@ -1065,14 +1113,20 @@
           <h2>Saved Courses Shortlist</h2>
           <p id="savedCoursesModalCount">0 courses saved</p>
         </div>
-        <button class="modal-close-x" id="savedCoursesModalClose" type="button" title="Close shortlist" aria-label="Close shortlist">
-          <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-        </button>
+        <div class="saved-courses-header-actions">
+          <button class="modal-btn-pdf saved-courses-export-btn" id="savedCoursesPdfBtn" type="button" title="Download saved courses as PDF" disabled>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            Download PDF
+          </button>
+          <button class="modal-close-x" id="savedCoursesModalClose" type="button" title="Close shortlist" aria-label="Close shortlist">
+            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
       </div>
       <div class="saved-course-list" id="savedCoursesList"></div>
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=20261116-2"></script>
 </body>
 </html>

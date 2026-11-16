@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
@@ -8,6 +8,7 @@
   <meta name="theme-color" content="#070b12">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <script src="../theme.js"></script>
   
   <!-- Google Fonts: Space Grotesk & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,7 +16,7 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   
   <!-- Application Stylesheet -->
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/styles.css?v=20261116-3">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='4' y1='2' x2='32' y2='34' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0%25' stop-color='%2338bdf8'/%3E%3Cstop offset='50%25' stop-color='%236366f1'/%3E%3Cstop offset='100%25' stop-color='%23ec4899'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpolygon points='18,3 32,10.5 32,25.5 18,33 4,25.5 4,10.5' fill='url(%23g)'/%3E%3Cpolygon points='18,8 28,13.5 18,18 8,13.5' fill='%23ffffff' opacity='0.35'/%3E%3Cpolygon points='18,13 22,18 18,23 14,18' fill='%23ffffff'/%3E%3C/svg%3E">
 </head>
 <body>
@@ -150,6 +151,11 @@
             <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
           </svg>
           <span class="badge-count" id="bookmarkCountBadge" style="display:none;">0</span>
+        </button>
+
+        <button class="btn-find-path" type="button" onclick="window.SiddhanTech.openCareerWizard()" title="Find your career path" aria-label="Open the 3-step career pathway matcher">
+          <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><path d="M12 3v3m0 12v3M3 12h3m12 0h3"></path><circle cx="12" cy="12" r="7"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+          <span class="find-path-label">Find My Path</span>
         </button>
 
         <!-- Enquiry CTA -->
@@ -748,7 +754,7 @@
 
   <!-- Core Scripts -->
   <script src="js/data.js"></script>
-  <script src="js/app.js"></script>
+  <script src="js/app.js?v=20261116-1"></script>
   <script>
     if (window.parent !== window) {
       document.addEventListener('click', event => {

@@ -6,7 +6,9 @@ const themeBtn = document.getElementById('themeToggle');
 
 themeBtn?.addEventListener('click', () => {
   const isDark = html.getAttribute('data-theme') === 'dark';
-  html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  const nextTheme = isDark ? 'light' : 'dark';
+  if (window.SiddhanTheme) window.SiddhanTheme.set(nextTheme);
+  else html.setAttribute('data-theme', nextTheme);
   showToast(isDark ? '☀️ Light mode on' : '🌙 Dark mode on');
 });
 
@@ -30,8 +32,11 @@ const views = {
   domains: document.getElementById('viewDomains'),
   compare: document.getElementById('viewCompare'),
 };
+let activeViewName = 'cards';
 
 function switchView(viewName) {
+  activeViewName = viewName;
+  document.body.dataset.activeView = viewName;
   viewTabs.forEach(t => {
     t.classList.toggle('active', t.dataset.view === viewName);
   });
@@ -72,7 +77,9 @@ const savedCourseCount = document.getElementById('savedCourseCount');
 const savedCoursesModal = document.getElementById('savedCoursesModal');
 const savedCoursesModalCount = document.getElementById('savedCoursesModalCount');
 const savedCoursesList = document.getElementById('savedCoursesList');
+const savedCoursesPdfBtn = document.getElementById('savedCoursesPdfBtn');
 const savedCourseNavCount = document.getElementById('savedCourseNavCount');
+const mobileSavedCourseNavCount = document.getElementById('mobileSavedCourseNavCount');
 const courseCompareNavCount = document.getElementById('courseCompareNavCount');
 const courseCompareContainer = document.getElementById('courseCompareContainer');
 const savedCoursesKey = 'siddhan_course_matrix_saved_v1';
@@ -203,6 +210,10 @@ function updateSavedCourseUI() {
     savedCourseNavCount.textContent = String(savedCourseCodes.size);
     savedCourseNavCount.style.display = savedCourseCodes.size ? 'flex' : 'none';
   }
+  if (mobileSavedCourseNavCount) {
+    mobileSavedCourseNavCount.textContent = String(savedCourseCodes.size);
+    mobileSavedCourseNavCount.style.display = savedCourseCodes.size ? 'flex' : 'none';
+  }
   if (courseCompareNavCount) {
     courseCompareNavCount.textContent = String(compareCourseCodes.size);
     courseCompareNavCount.style.display = compareCourseCodes.size ? 'flex' : 'none';
@@ -282,6 +293,7 @@ function renderSavedCoursesModal() {
   if (!savedCoursesList) return;
 
   const savedCards = Array.from(cards).filter(card => savedCourseCodes.has(getCardCourseCode(card)));
+  if (savedCoursesPdfBtn) savedCoursesPdfBtn.disabled = savedCards.length === 0;
   if (savedCoursesModalCount) {
     const count = savedCards.length;
     savedCoursesModalCount.textContent = `${count} course${count === 1 ? '' : 's'} saved`;
@@ -370,6 +382,9 @@ function renderSavedCoursesModal() {
 
 function openSavedCourses() {
   renderSavedCoursesModal();
+  document.querySelectorAll('.mobile-nav-item').forEach(item => {
+    item.classList.toggle('active', item.dataset.mobileAction === 'saved');
+  });
   savedCoursesModal?.classList.add('open');
   document.body.style.overflow = 'hidden';
 }
@@ -506,6 +521,9 @@ function clearCourseCompare() {
 
 function closeSavedCourses() {
   savedCoursesModal?.classList.remove('open');
+  document.querySelectorAll('.mobile-nav-item').forEach(item => {
+    item.classList.toggle('active', item.dataset.view === activeViewName);
+  });
   if (!courseModal?.classList.contains('open')) document.body.style.overflow = '';
 }
 
@@ -639,6 +657,172 @@ function normalizeSoftwareName(value) {
     .trim();
 }
 
+const domainDetailModal = document.getElementById('domainDetailModal');
+const domainDetailCloseX = document.getElementById('domainDetailCloseX');
+const domainDetailCloseFooter = document.getElementById('domainDetailCloseFooter');
+let activeDomainTrigger = null;
+
+function normalizeDomainToolName(value) {
+  return normalizeSoftwareName(value)
+    .replace(/\([^)]*\)/g, ' ')
+    .replace(/\bunreal\s+engine\b/g, 'unreal')
+    .replace(/\bsubstance\s+3d\s+painter\b/g, 'substance painter')
+    .replace(/\bsubstance\s+3d\b/g, 'substance')
+    .replace(/[^a-z0-9]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function getDomainSoftware(domainCard) {
+  const softwareText = domainCard.querySelector('p')?.textContent || '';
+  const seen = new Set();
+  return softwareText
+    .split(/[•·–]/)
+    .map(tool => tool.trim().replace(/\s+/g, ' '))
+    .filter(tool => {
+      if (!tool) return false;
+      const key = normalizeDomainToolName(tool);
+      if (!key || seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+}
+
+function setDomainPills(container, items, { className, emptyMessage, onSelect }) {
+  container.replaceChildren();
+  if (!items.length) {
+    const empty = document.createElement('p');
+    empty.className = 'domain-related-empty';
+    empty.textContent = emptyMessage;
+    container.appendChild(empty);
+    return;
+  }
+
+  items.forEach(item => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = `modal-tool-pill ${className}`;
+    button.textContent = item.label;
+    button.addEventListener('click', event => onSelect(item, event));
+    container.appendChild(button);
+  });
+}
+
+function closeDomainDetailModal({ restoreFocus = true } = {}) {
+  if (!domainDetailModal) return;
+  domainDetailModal.classList.remove('open');
+  domainDetailModal.setAttribute('aria-hidden', 'true');
+  if (!document.querySelector('.modal-overlay.open')) document.body.style.overflow = '';
+  if (restoreFocus && activeDomainTrigger?.isConnected) activeDomainTrigger.focus();
+}
+
+function openDomainDetailModal(domainCard, trigger = domainCard) {
+  if (!domainDetailModal) return;
+  activeDomainTrigger = trigger;
+
+  const title = domainCard.querySelector('h4')?.textContent.trim() || 'Production Domain';
+  const software = getDomainSoftware(domainCard);
+  const softwareKeys = new Set(software.map(normalizeDomainToolName));
+  const relatedCourses = Array.from(cards).map(card => {
+    const tools = Array.from(card.querySelectorAll('.tool-chip')).map(chip => chip.textContent.trim());
+    const matches = tools.some(tool => softwareKeys.has(normalizeDomainToolName(tool)));
+    return matches ? {
+      card,
+      title: card.querySelector('.role-title')?.textContent.trim() || 'Course Blueprint'
+    } : null;
+  }).filter(Boolean);
+  const relatedJobs = Array.from(new Set(relatedCourses.flatMap(({ card }) =>
+    Array.from(card.querySelectorAll('.career-tag')).map(tag => tag.textContent.trim())
+  )));
+
+  document.getElementById('domainDetailTitle').textContent = title;
+  document.getElementById('domainDetailSummary').textContent =
+    `${software.length} software tools · ${relatedCourses.length} related courses · ${relatedJobs.length} job roles`;
+
+  setDomainPills(
+    document.getElementById('domainDetailSoftware'),
+    software.map(label => ({ label })),
+    {
+      className: 'modal-software-filter',
+      emptyMessage: 'No software tools listed for this domain.',
+      onSelect: ({ label }) => {
+        closeDomainDetailModal({ restoreFocus: false });
+        filterCoursesByTool(label);
+      }
+    }
+  );
+
+  setDomainPills(
+    document.getElementById('domainDetailCourses'),
+    relatedCourses.map(item => ({ ...item, label: item.title })),
+    {
+      className: 'domain-course-link',
+      emptyMessage: 'No matching courses are listed for these tools yet.',
+      onSelect: ({ card }) => {
+        closeDomainDetailModal({ restoreFocus: false });
+        openCourseModal(extractCardData(card));
+      }
+    }
+  );
+
+  setDomainPills(
+    document.getElementById('domainDetailJobs'),
+    relatedJobs.map(label => ({ label })),
+    {
+      className: 'domain-job-link modal-career-link',
+      emptyMessage: 'No linked job roles are listed for this domain yet.',
+      onSelect: ({ label }, event) => {
+        closeDomainDetailModal({ restoreFocus: false });
+        openCareerMatrixRole(label, event);
+      }
+    }
+  );
+
+  domainDetailModal.classList.add('open');
+  domainDetailModal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+  domainDetailCloseX?.focus();
+}
+
+// Production Domain Coverage chips open the same details and related-jobs list
+// as the matching domain card, with keyboard support for non-button markup.
+document.querySelectorAll('#viewAnalytics .domain-chip').forEach(chip => {
+  const title = chip.querySelector('span')?.textContent.trim();
+  const matchingDomain = Array.from(document.querySelectorAll('#viewDomains .domain-block'))
+    .find(domainCard => domainCard.querySelector('h4')?.textContent.trim() === title);
+  if (!matchingDomain) return;
+
+  chip.setAttribute('role', 'button');
+  chip.setAttribute('tabindex', '0');
+  chip.setAttribute('aria-haspopup', 'dialog');
+  chip.setAttribute('aria-label', `Show related software, courses, and jobs for ${title}`);
+  chip.addEventListener('click', () => openDomainDetailModal(matchingDomain, chip));
+  chip.addEventListener('keydown', event => {
+    if (event.key !== 'Enter' && event.key !== ' ') return;
+    event.preventDefault();
+    openDomainDetailModal(matchingDomain, chip);
+  });
+});
+
+document.querySelectorAll('#viewDomains .domain-block').forEach(domainCard => {
+  domainCard.setAttribute('role', 'button');
+  domainCard.setAttribute('tabindex', '0');
+  domainCard.setAttribute('aria-haspopup', 'dialog');
+  domainCard.setAttribute('aria-label', `Show related software, courses, and jobs for ${domainCard.querySelector('h4')?.textContent.trim() || 'this domain'}`);
+  domainCard.addEventListener('click', () => openDomainDetailModal(domainCard));
+  domainCard.addEventListener('keydown', event => {
+    if (event.key !== 'Enter' && event.key !== ' ') return;
+    event.preventDefault();
+    openDomainDetailModal(domainCard);
+  });
+});
+
+domainDetailCloseX?.addEventListener('click', () => closeDomainDetailModal());
+domainDetailCloseFooter?.addEventListener('click', () => closeDomainDetailModal());
+domainDetailModal?.addEventListener('click', event => {
+  if (event.target === domainDetailModal) closeDomainDetailModal();
+});
+
 function openCareerMatrixRole(careerName, event) {
   event?.preventDefault();
   event?.stopPropagation();
@@ -653,6 +837,19 @@ function openCareerMatrixHub(hubName, event) {
     return;
   }
   window.location.href = `../Maac/index.html?hub=${encodeURIComponent(hubName)}`;
+}
+
+function openCareerWizard(event) {
+  event?.preventDefault();
+  if (window.parent !== window) {
+    window.parent.postMessage({
+      type: 'siddhan-portal-navigate',
+      view: 'career',
+      openWizard: true
+    }, '*');
+    return;
+  }
+  window.location.href = '../Maac/index.html?openWizard=1';
 }
 
 function filterCoursesByTool(toolName) {
@@ -699,6 +896,11 @@ function filterCoursesByTool(toolName) {
   document.getElementById('filterStrip')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   showToast(`No course or domain entry found for ${toolName}`);
 }
+
+window.addEventListener('message', event => {
+  if (event.source !== window.parent || event.data?.type !== 'siddhan-portal-filter-software') return;
+  filterCoursesByTool(event.data.softwareName);
+});
 
 function filterCourseTableByTool(toolName) {
   filterCourseTableByValue(toolName, 'software');
@@ -1396,7 +1598,8 @@ courseModal?.addEventListener('click', (e) => {
 // Close on Escape key
 document.addEventListener('keydown', (e) => {
   if (e.key !== 'Escape') return;
-  if (savedCoursesModal?.classList.contains('open')) closeSavedCourses();
+  if (domainDetailModal?.classList.contains('open')) closeDomainDetailModal();
+  else if (savedCoursesModal?.classList.contains('open')) closeSavedCourses();
   else if (courseModal.classList.contains('open')) closeCourseModal();
 });
 
@@ -1643,8 +1846,127 @@ function downloadCoursePDF(course) {
   }
 }
 
+function downloadSavedCoursesPDF() {
+  const savedCards = Array.from(cards).filter(card => savedCourseCodes.has(getCardCourseCode(card)));
+  if (!savedCards.length) {
+    showToast('Save at least one course before downloading the shortlist.');
+    return;
+  }
+
+  const jsPDFConstructor = (window.jspdf && window.jspdf.jsPDF) || window.jsPDF || (typeof jsPDF !== 'undefined' ? jsPDF : null);
+  if (!jsPDFConstructor) {
+    showToast('The PDF tool is unavailable. Refresh the page and try again.');
+    return;
+  }
+
+  try {
+    const courses = savedCards.map(extractCardData);
+    const doc = new jsPDFConstructor({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const margin = 16;
+    const textWidth = pageWidth - margin * 2;
+    let y = 43;
+
+    const clean = value => String(value || '')
+      .replace(/[•·]/g, ' | ')
+      .replace(/[–—]/g, '-')
+      .replace(/[’]/g, "'")
+      .replace(/[“”]/g, '"');
+
+    const drawPageHeader = () => {
+      doc.setFillColor(15, 23, 42);
+      doc.roundedRect(12, 12, pageWidth - 24, 23, 3, 3, 'F');
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(14);
+      doc.setTextColor(255, 255, 255);
+      doc.text('SIDDHAN TECHNOLOGIES', 18, 22);
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(8);
+      doc.setTextColor(125, 211, 252);
+      doc.text(`SAVED COURSE SHORTLIST  |  ${courses.length} COURSE${courses.length === 1 ? '' : 'S'}`, 18, 29);
+      y = 44;
+    };
+
+    const nextPage = () => {
+      doc.addPage();
+      drawPageHeader();
+    };
+
+    const writeWrappedLines = (value, { font = 'normal', size = 9, color = [51, 65, 85], lineHeight = 4.5 } = {}) => {
+      const lines = doc.splitTextToSize(clean(value), textWidth);
+      doc.setFont('helvetica', font);
+      doc.setFontSize(size);
+      doc.setTextColor(...color);
+      lines.forEach(line => {
+        if (y > pageHeight - 20) nextPage();
+        doc.text(line, margin, y);
+        y += lineHeight;
+      });
+    };
+
+    const writeDetail = (label, value) => {
+      if (!value) return;
+      if (y > pageHeight - 34) nextPage();
+      writeWrappedLines(label.toUpperCase(), { font: 'bold', size: 7.5, color: [79, 70, 229], lineHeight: 4 });
+      writeWrappedLines(value, { size: 9, color: [51, 65, 85], lineHeight: 4.5 });
+      y += 2;
+    };
+
+    drawPageHeader();
+    courses.forEach((course, index) => {
+      if (y > pageHeight - 38) nextPage();
+      doc.setFillColor(224, 231, 255);
+      doc.roundedRect(margin, y - 4, textWidth, 9, 1.5, 1.5, 'F');
+      doc.setFont('courier', 'bold');
+      doc.setFontSize(8);
+      doc.setTextColor(67, 56, 202);
+      doc.text(`${clean(course.code)}  |  ${clean(course.suite).toUpperCase()}`, margin + 3, y + 1.5);
+      y += 11;
+
+      writeWrappedLines(`${index + 1}. ${course.title}`, { font: 'bold', size: 12, color: [15, 23, 42], lineHeight: 5.5 });
+      writeDetail('Duration & training hours', `${course.duration}  |  ${course.hours}`);
+      writeDetail('Course focus', course.industries);
+      writeDetail('Software tools', (course.tools || []).join(', '));
+      writeDetail('Career options', (course.careers || []).join(', '));
+      writeDetail('Overview', course.responsibilities);
+
+      if (index < courses.length - 1) {
+        if (y > pageHeight - 22) nextPage();
+        else {
+          doc.setDrawColor(203, 213, 225);
+          doc.setLineWidth(0.25);
+          doc.line(margin, y, pageWidth - margin, y);
+          y += 7;
+        }
+      }
+    });
+
+    const totalPages = doc.internal.getNumberOfPages();
+    for (let page = 1; page <= totalPages; page += 1) {
+      doc.setPage(page);
+      doc.setDrawColor(203, 213, 225);
+      doc.setLineWidth(0.25);
+      doc.line(margin, pageHeight - 14, pageWidth - margin, pageHeight - 14);
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(7.5);
+      doc.setTextColor(100, 116, 139);
+      doc.text('SIDDHAN TECHNOLOGIES  |  Course Matrix', margin, pageHeight - 8);
+      doc.text(`Page ${page} of ${totalPages}`, pageWidth - margin, pageHeight - 8, { align: 'right' });
+    }
+
+    const filename = 'SIDDHAN_TECHNOLOGIES_Saved_Courses_Shortlist.pdf';
+    doc.save(filename);
+    showToast(`Downloaded saved courses PDF (${courses.length} course${courses.length === 1 ? '' : 's'}).`);
+  } catch (error) {
+    console.error('Saved courses PDF generation error:', error);
+    showToast('Could not create the saved courses PDF. Please try again.');
+  }
+}
+
 // Bind PDF download buttons
 modalPdfBtn?.addEventListener('click', () => downloadCoursePDF(currentCourse));
+savedCoursesPdfBtn?.addEventListener('click', downloadSavedCoursesPDF);
 
 // Expose public API
 window.SiddhanCourse = {
@@ -1653,6 +1975,7 @@ window.SiddhanCourse = {
   openSavedCourses,
   openCourseCompare,
   filterCoursesByTool,
+  openCareerWizard,
   downloadCoursePDF,
   extractCardData,
   extractTableRowData,
@@ -1706,3 +2029,5 @@ makeCourseTableToolsClickable();
 if (sortSelect) sortSelect.value = 'code-az';
 sortCourseViews('code-az');
 applyFilters();
+const initialSoftwareFilter = new URLSearchParams(window.location.search).get('software');
+if (initialSoftwareFilter) filterCoursesByTool(initialSoftwareFilter);

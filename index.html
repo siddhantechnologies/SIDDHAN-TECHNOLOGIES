@@ -8,6 +8,7 @@
   <meta name="theme-color" content="#070b12">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <script src="theme.js"></script>
   
   <!-- Google Fonts: Space Grotesk & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -455,6 +456,20 @@
       cursor: pointer;
       border: none;
     }
+    .portal-path-btn {
+      margin-top: 0.65rem;
+      border: 1px solid rgba(129, 140, 248, 0.45);
+      background: rgba(99, 102, 241, 0.1);
+      color: var(--text-highlight);
+    }
+    .portal-path-btn:hover,
+    .portal-path-btn:focus-visible {
+      color: #ffffff;
+      border-color: #818cf8;
+      background: rgba(99, 102, 241, 0.2);
+      box-shadow: 0 0 20px rgba(99, 102, 241, 0.28);
+      transform: translateY(-2px);
+    }
     .btn-primary-career {
       background: linear-gradient(135deg, #38bdf8, #6366f1);
       color: #ffffff;
@@ -687,11 +702,64 @@
     }
     .portal-loading.is-visible { display: grid; }
     .portal-loading strong { display: block; color: var(--text-highlight); font-size: 1.05rem; margin-bottom: .35rem; }
+    /* Keep the contact strip in step with the selected page theme. */
+    .top-contact-strip .tc-brand { color: #94a3b8; }
+    .top-contact-strip .tc-link { color: #cbd5e1; }
+    [data-theme="light"] .top-contact-strip {
+      background: rgba(248, 250, 252, .96);
+      border-bottom-color: rgba(15, 23, 42, .1);
+      color: #475569;
+    }
+    [data-theme="light"] .top-contact-strip .tc-brand,
+    [data-theme="light"] .top-contact-strip .tc-link { color: #475569; }
+    [data-theme="light"] .top-contact-strip .tc-brand strong { color: #0369a1; }
+    [data-theme="light"] .top-contact-strip .tc-divider { color: #94a3b8; }
+    [data-theme="light"] .logo-brand { color: #0f172a; }
+    [data-theme="light"] .logo-brand span {
+      background: linear-gradient(135deg, #0369a1 0%, #4338ca 52%, #be185d 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+    [data-theme="light"] .logo-sub { color: #075985; }
+    html:not([data-theme="light"]) .site-header .logo-brand,
+    html:not([data-theme="light"]) .site-header .logo-brand span {
+      color: #ffffff;
+      background: none;
+      -webkit-text-fill-color: #ffffff;
+    }
+    [data-theme="light"] .site-header .logo-brand {
+      color: #0f172a;
+      -webkit-text-stroke: 0;
+      text-shadow: none;
+    }
+    [data-theme="light"] .site-header .logo-brand span {
+      background: linear-gradient(135deg, #0369a1 0%, #4338ca 52%, #be185d 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      -webkit-text-stroke: 0;
+      text-shadow: none;
+    }
     @media (max-width: 760px) {
+      .top-contact-strip { display: none; }
+      .nav-container { height: 60px; gap: 0.5rem; }
+      .logo-area { min-width: 0; gap: 0.5rem; }
+      .logo-icon-box { width: 36px; height: 36px; flex: 0 0 36px; }
+      .logo-text { min-width: 0; }
+      .logo-brand { font-size: 0.95rem; letter-spacing: 0.02em; gap: 0.2rem; white-space: nowrap; }
+      .logo-sub { font-size: 0.52rem; letter-spacing: 0.08em; white-space: nowrap; }
+      .nav-actions { gap: 6px; }
+      .btn-icon-nav { width: 36px; height: 36px; flex: 0 0 36px; }
       .portal-shell-header { align-items: flex-start; flex-direction: column; }
       .portal-tabs { width: 100%; }
       .portal-tab { flex: 1 1 auto; }
-      .portal-frame-stage { height: calc(100vh - 275px); height: calc(100dvh - 275px); min-height: 440px; }
+      .portal-frame-stage { height: calc(100vh - 245px); height: calc(100dvh - 245px); min-height: 440px; }
+    }
+
+    @media (max-width: 380px) {
+      .logo-brand { font-size: 0.84rem; letter-spacing: 0.01em; }
+      .logo-sub { font-size: 0.47rem; }
+      .logo-icon-box { width: 34px; height: 34px; flex-basis: 34px; }
     }
 
     /* Keep native action buttons consistent with the rest of the portal. */
@@ -702,6 +770,8 @@
     input[type="reset"] {
       border-radius: var(--radius-sm, 8px) !important;
     }
+    .portal-tab,
+    .btn-icon-nav { border-radius: 10px !important; }
   </style>
 </head>
 <body>
@@ -858,6 +928,9 @@
             <span>Launch Career Matrix (85 Roles)</span>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
           </a>
+          <a href="Maac/index.html?openWizard=1" class="portal-cta-btn portal-path-btn" data-standalone="true" aria-label="Open the interactive 3-step career pathway matcher">
+            <span>Find My Path · Interactive 3-Step Matcher</span>
+          </a>
         </div>
 
         <!-- Portal 2: Course & Software Topic Mapping -->
@@ -907,7 +980,7 @@
           <a href="Maac/index.html?software=premiere" class="suite-pill" data-standalone="true">Adobe Premiere Pro (6 Roles)</a>
           <a href="Maac/index.html?software=aftereffects" class="suite-pill" data-standalone="true">Adobe After Effects (6 Roles)</a>
           <a href="Maac/index.html?software=audition" class="suite-pill" data-standalone="true">Adobe Audition (6 Roles)</a>
-          <a href="Course/index.html" class="suite-pill" data-standalone="true" style="border-color: #ec4899; color: #ec4899;">View 13 Course syllabus  &rarr;</a>
+          <a href="Course/index.html" class="suite-pill" data-standalone="true" style="border-color: #ec4899; color: #ec4899;">View 13 Course Syllabi &rarr;</a>
         </div>
       </section>
 
@@ -932,8 +1005,8 @@
         <div class="portal-loading is-visible" id="portal-loading" role="status" aria-live="polite">
           <div><strong id="portal-loading-title">Loading workspace…</strong><span id="portal-loading-copy">The course and career tools share this page.</span></div>
         </div>
-        <iframe id="course-portal-frame" title="Course and Software Topic Mapping" data-src="Course/index.html" loading="lazy"></iframe>
-        <iframe id="career-portal-frame" title="Career Intelligence Matrix" data-src="Maac/index.html" loading="lazy"></iframe>
+        <iframe id="course-portal-frame" title="Course and Software Topic Mapping" data-theme-frame data-src="Course/index.html" loading="lazy"></iframe>
+        <iframe id="career-portal-frame" title="Career Intelligence Matrix" data-theme-frame data-src="Maac/index.html" loading="lazy"></iframe>
       </div>
     </div>
   </section>
@@ -953,22 +1026,22 @@
         <div>
           <h4 class="footer-col-title">Career Intelligence</h4>
           <ul class="footer-links">
-            <li><a href="Maac/index.html">85 Roles Directory</a></li>
-            <li><a href="Maac/index.html">11 Software Suites</a></li>
-            <li><a href="Maac/index.html">Studio Production Pipelines</a></li>
-            <li><a href="Maac/index.html">Career Matcher Wizard</a></li>
-            <li><a href="Maac/index.html">Role Comparison Matrix</a></li>
+            <li><a href="Maac/index.html" data-standalone="true">85 Roles Directory</a></li>
+            <li><a href="Maac/index.html" data-standalone="true">11 Software Suites</a></li>
+            <li><a href="Maac/index.html" data-standalone="true">Studio Production Pipelines</a></li>
+            <li><a href="Maac/index.html" data-standalone="true">Career Matcher Wizard</a></li>
+            <li><a href="Maac/index.html" data-standalone="true">Role Comparison Matrix</a></li>
           </ul>
         </div>
 
         <div>
           <h4 class="footer-col-title">Course Curriculum</h4>
           <ul class="footer-links">
-            <li><a href="Course/index.html">13 Course syllabus </a></li>
-            <li><a href="Course/index.html">32+ Software Topics</a></li>
-            <li><a href="Course/index.html">3 Production Families</a></li>
-            <li><a href="Course/index.html">Master Curriculum Table</a></li>
-            <li><a href="Course/index.html">Syllabus PDF Blueprint</a></li>
+            <li><a href="Course/index.html" data-standalone="true">13 Course Syllabi</a></li>
+            <li><a href="Course/index.html" data-standalone="true">32+ Software Topics</a></li>
+            <li><a href="Course/index.html" data-standalone="true">3 Production Families</a></li>
+            <li><a href="Course/index.html" data-standalone="true">Master Curriculum Table</a></li>
+            <li><a href="Course/index.html" data-standalone="true">Syllabus PDF Blueprint</a></li>
           </ul>
         </div>
 
@@ -1001,18 +1074,8 @@
   </footer>
 
   <script>
-    // Theme Toggle
-    const themeBtn = document.getElementById('themeToggleBtn');
-    const htmlEl = document.documentElement;
-    const savedTheme = localStorage.getItem('siddhan_theme') || 'dark';
-    htmlEl.setAttribute('data-theme', savedTheme);
-
-    themeBtn?.addEventListener('click', () => {
-      const current = htmlEl.getAttribute('data-theme') || 'dark';
-      const next = current === 'dark' ? 'light' : 'dark';
-      htmlEl.setAttribute('data-theme', next);
-      localStorage.setItem('siddhan_theme', next);
-    });
+    // Shared theme state keeps the Home, Course, and Career pages in sync.
+    window.SiddhanTheme?.bindToggle(document.getElementById('themeToggleBtn'));
 
     // Dynamic Link Resolver
     function initDynamicPortalLinks() {
@@ -1112,6 +1175,27 @@
       else frame.addEventListener('load', sendFilter, { once: true });
     }
 
+    function filterCourseBySoftware(softwareName) {
+      const frame = portalViews.course.frame;
+      const sendFilter = () => frame.contentWindow.postMessage({
+        type: 'siddhan-portal-filter-software',
+        softwareName
+      }, '*');
+
+      if (frame.dataset.ready === 'true') sendFilter();
+      else frame.addEventListener('load', sendFilter, { once: true });
+    }
+
+    function launchCareerWizard() {
+      const frame = portalViews.career.frame;
+      const sendLaunch = () => frame.contentWindow.postMessage({
+        type: 'siddhan-portal-open-career-wizard'
+      }, '*');
+
+      if (frame.dataset.ready === 'true') sendLaunch();
+      else frame.addEventListener('load', sendLaunch, { once: true });
+    }
+
     function portalForHref(href) {
       try {
         const target = new URL(href, window.location.href);
@@ -1141,6 +1225,8 @@
       const view = message.view === 'hub' ? 'overview' : message.view;
       if (view === 'career' && message.hubName) filterCareerByHub(message.hubName);
       setPortalView(view);
+      if (view === 'course' && message.softwareName) filterCourseBySoftware(message.softwareName);
+      if (view === 'career' && message.openWizard) launchCareerWizard();
     });
 
     const hashView = window.location.hash.replace('#', '').toLowerCase();
