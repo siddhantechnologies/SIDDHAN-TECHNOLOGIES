@@ -12,7 +12,7 @@
     searchQuery: '',
     selectedIndustry: 'all',
     selectedHub: 'all',
-    sortBy: 'default',
+    sortBy: 'id-asc',
     activeView: 'cards', // 'cards' | 'table' | 'analytics' | 'roadmaps' | 'compare'
     bookmarks: new Set(JSON.parse(localStorage.getItem('siddhan_bookmarks') || localStorage.getItem('iyal_bookmarks') || localStorage.getItem('nexus3d_bookmarks') || '[]')),
     compareList: new Set(JSON.parse(localStorage.getItem('siddhan_compare') || localStorage.getItem('iyal_compare') || localStorage.getItem('nexus3d_compare') || '[]')),
@@ -73,7 +73,7 @@
     activeFilterChips: document.getElementById('activeFilterChips'),
     navTabs: document.querySelectorAll('.nav-tab-btn'),
     mobileNavItems: document.querySelectorAll('.mobile-nav-item'),
-    viewToggles: document.querySelectorAll('.btn-view-toggle'),
+    layoutToggles: document.querySelectorAll('.btn-view-toggle'),
     views: {
       cards: document.getElementById('viewCards'),
       table: document.getElementById('viewTable'),
@@ -339,7 +339,7 @@
     }
 
     // Check if any filter is active for mobile indicator
-    const hasActiveFilters = state.activeSoftware !== 'all' || state.selectedIndustry !== 'all' || state.selectedHub !== 'all' || state.sortBy !== 'default';
+    const hasActiveFilters = state.activeSoftware !== 'all' || state.selectedIndustry !== 'all' || state.selectedHub !== 'all' || state.sortBy !== 'id-asc';
     if (DOM.mobileFilterIndicator) {
       DOM.mobileFilterIndicator.style.display = hasActiveFilters ? 'inline-block' : 'none';
     }
@@ -460,7 +460,7 @@
         <article class="role-card" style="--accent-color: ${sw.color}; --accent-glow: ${sw.accentGlow};" data-role-id="${role.id}" tabindex="0" aria-label="Open job details for ${role.title}" aria-haspopup="dialog">
           <div class="role-card-accent-bar"></div>
           
-          <div>
+          <div class="role-card-content">
             <div class="role-card-header">
               <span class="role-id-badge">${role.id}</span>
               <span class="role-sw-badge ${sw.badgeClass}">
@@ -1394,6 +1394,7 @@
   function openBookmarksModal() {
     const list = Array.from(state.bookmarks);
     const bookmarkedRoles = list.map(id => ROLES_DATA.find(r => r.id === id)).filter(Boolean);
+    const exportDisabled = bookmarkedRoles.length ? '' : 'disabled';
 
     DOM.bookmarksModalContent.innerHTML = `
       <div class="modal-header">
@@ -1406,30 +1407,31 @@
         </button>
       </div>
 
-      <div class="modal-body">
+      <div class="modal-body saved-roles-body">
         ${bookmarkedRoles.length === 0 ? `
-          <div style="text-align: center; padding: 2.75rem 1rem;">
-            <svg viewBox="0 0 24 24" width="40" height="40" stroke="var(--text-dim)" stroke-width="1.5" fill="none" style="margin-bottom: 0.85rem;"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
-            <h4 style="margin-bottom: 0.35rem;">Your shortlist is empty</h4>
-            <p style="color: var(--text-muted); font-size: 0.85rem;">Bookmark roles while exploring to build your targeted career roadmap at SIDDHAN TECHNOLOGIES.</p>
+          <div class="saved-roles-empty">
+            <svg viewBox="0 0 24 24" width="32" height="32" stroke="var(--text-dim)" stroke-width="1.6" fill="none" aria-hidden="true"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+            <h3>Your shortlist is empty</h3>
+            <p>Save a role with its bookmark button and it will appear here.</p>
+            <button class="saved-roles-browse-btn" type="button" onclick="window.SiddhanTech.closeModal('bookmarksModal'); window.SiddhanTech.switchView('cards')">Browse all roles</button>
           </div>
         ` : `
-          <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.25rem;">
+          <div class="saved-roles-list">
             ${bookmarkedRoles.map(role => {
               const sw = SOFTWARE_METADATA[role.softwareKey] || {};
               return `
-                <div style="display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 0.8rem 0.95rem;">
-                  <div>
-                    <div style="display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.15rem;">
+                <div class="saved-role-row">
+                  <div class="saved-role-copy">
+                    <div class="saved-role-badges">
                       <span class="role-id-badge" style="font-size: 0.68rem;">${role.id}</span>
                       <span class="role-sw-badge ${sw.badgeClass}" style="font-size: 0.65rem; padding: 1px 6px;">${sw.shortName}</span>
                     </div>
-                    <div style="font-weight: 700; color: var(--text-highlight); font-size: 0.95rem;">${role.title}</div>
-                    <div style="font-size: 0.75rem; color: #38bdf8;">${role.industry}</div>
+                    <div class="saved-role-title">${role.title}</div>
+                    <div class="saved-role-industry">${role.industry}</div>
                   </div>
-                  <div style="display: flex; gap: 0.4rem;">
-                    <button class="btn-card-details" style="padding: 0.3rem 0.65rem; font-size: 0.78rem;" onclick="window.SiddhanTech.closeModal('bookmarksModal'); window.SiddhanTech.openRoleModal('${role.id}')">View</button>
-                    <button class="btn-card-action-icon active-bookmark" onclick="window.SiddhanTech.toggleBookmark('${role.id}'); window.SiddhanTech.openBookmarksModal();" title="Remove">
+                  <div class="saved-role-actions">
+                    <button class="saved-role-view-btn" type="button" onclick="window.SiddhanTech.closeModal('bookmarksModal'); window.SiddhanTech.openRoleModal('${role.id}')">View</button>
+                    <button class="saved-role-remove-btn" type="button" onclick="window.SiddhanTech.toggleBookmark('${role.id}'); window.SiddhanTech.openBookmarksModal();" title="Remove" aria-label="Remove ${role.title} from saved roles">
                       <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                     </button>
                   </div>
@@ -1437,21 +1439,23 @@
               `;
             }).join('')}
           </div>
-
-          <div style="display: flex; flex-wrap: wrap; gap: 0.65rem; align-items: center; margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--border-subtle);">
-            <button class="btn-pdf-action" type="button" onclick="window.SiddhanTech.exportShortlistPDF()" title="Download the saved roles as a PDF" style="display: flex; align-items: center; gap: 0.4rem;">
-              <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
-              Download PDF
-            </button>
-            <button class="btn-reset-filters" onclick="window.SiddhanTech.printShortlistPDF()" title="Print / Save as PDF via Browser" style="display: flex; align-items: center; gap: 0.4rem;">
-              <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
-              Print
-            </button>
-            <button class="btn-reset-filters" onclick="window.SiddhanTech.exportShortlistCSV()">CSV</button>
-            <button class="btn-reset-filters" onclick="window.SiddhanTech.exportShortlistJSON()">JSON</button>
-            <button class="btn-reset-filters" style="margin-left: auto; color: #f87171;" onclick="window.SiddhanTech.clearBookmarks()">Clear All</button>
-          </div>
         `}
+      </div>
+
+      <div class="saved-roles-footer">
+        <div class="saved-roles-footer-actions">
+          <button class="btn-pdf-action" type="button" onclick="window.SiddhanTech.exportShortlistPDF()" title="Download the saved roles as a PDF" ${exportDisabled}>
+            <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+            Download PDF
+          </button>
+          <button class="btn-reset-filters" type="button" onclick="window.SiddhanTech.printShortlistPDF()" title="Print / Save as PDF via Browser" ${exportDisabled}>
+            <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+            Print
+          </button>
+          <button class="btn-reset-filters" type="button" onclick="window.SiddhanTech.exportShortlistCSV()" ${exportDisabled}>CSV</button>
+          <button class="btn-reset-filters" type="button" onclick="window.SiddhanTech.exportShortlistJSON()" ${exportDisabled}>JSON</button>
+        </div>
+        <button class="btn-reset-filters saved-roles-clear-btn" type="button" onclick="window.SiddhanTech.clearBookmarks()" ${exportDisabled}>Clear All</button>
       </div>
     `;
 
@@ -1573,16 +1577,24 @@
       }
     });
 
-    // Toggle view toggles on controls bar
-    DOM.viewToggles.forEach(t => {
-      if (t.getAttribute('data-view') === viewName) t.classList.add('active');
-      else t.classList.remove('active');
-    });
-
     if (DOM.views[viewName]) {
       const targetY = Math.max(0, DOM.views[viewName].offsetTop - 90);
       window.scrollTo({ top: targetY, behavior: 'smooth' });
     }
+  }
+
+  /**
+   * Switch the Career Catalog between grid cards and compact list rows.
+   */
+  function setCatalogLayout(layout) {
+    if (!DOM.rolesGrid) return;
+    const isList = layout === 'list';
+    DOM.rolesGrid.classList.toggle('list-view', isList);
+    DOM.layoutToggles.forEach(button => {
+      const active = button.getAttribute('data-layout') === layout;
+      button.classList.toggle('active', active);
+      button.setAttribute('aria-pressed', String(active));
+    });
   }
 
   /**
@@ -1660,12 +1672,12 @@
     state.searchQuery = '';
     state.selectedIndustry = 'all';
     state.selectedHub = 'all';
-    state.sortBy = 'default';
+    state.sortBy = 'id-asc';
 
     if (DOM.searchInput) DOM.searchInput.value = '';
     if (DOM.industryFilter) DOM.industryFilter.value = 'all';
     if (DOM.hubFilter) DOM.hubFilter.value = 'all';
-    if (DOM.sortSelect) DOM.sortSelect.value = 'default';
+    if (DOM.sortSelect) DOM.sortSelect.value = 'id-asc';
 
     if (DOM.mobileSwSelect) DOM.mobileSwSelect.value = 'all';
     if (DOM.mobileIndSelect) DOM.mobileIndSelect.value = 'all';
@@ -2859,11 +2871,10 @@ Official Contact: +91 96007 47753 | siddhantechnologies@gmail.com`;
       });
     });
 
-    // View Toggles
-    DOM.viewToggles.forEach(btn => {
+    // Catalog layout toggles (Master Table remains available in the navigation)
+    DOM.layoutToggles.forEach(btn => {
       btn.addEventListener('click', () => {
-        const view = btn.getAttribute('data-view');
-        switchView(view);
+        setCatalogLayout(btn.getAttribute('data-layout'));
       });
     });
 
@@ -2874,21 +2885,48 @@ Official Contact: +91 96007 47753 | siddhantechnologies@gmail.com`;
     // Contact Enquiry Form Submission
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
-      contactForm.addEventListener('submit', (e) => {
+      contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const values = new FormData(contactForm);
-        const body = [
-          `Name: ${values.get('name') || ''}`,
-          `Phone: ${values.get('phone') || 'Not provided'}`,
-          `Email: ${values.get('email') || ''}`,
-          `Course of Interest: ${values.get('course') || 'Not selected'}`,
-          '',
-          'Message:',
-          values.get('message') || ''
-        ].join('\n');
-        const subject = `Career enquiry from ${values.get('name') || 'website visitor'}`;
-        window.location.href = `mailto:siddhantechnologies@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-        showToast('Your email app will open with the enquiry. Send the email to complete it.', 'info');
+        const submitButton = contactForm.querySelector('[type="submit"]');
+        const values = Object.fromEntries(new FormData(contactForm).entries());
+        const subject = `Career enquiry from ${values.name || 'website visitor'}`;
+        values._subject = subject;
+        values._replyto = values.email || '';
+
+        if (window.location.protocol === 'file:') {
+          const body = [
+            `Name: ${values.name || ''}`,
+            `Phone: ${values.phone || 'Not provided'}`,
+            `Email: ${values.email || ''}`,
+            `Course of Interest: ${values.course || 'Not selected'}`,
+            '',
+            'Message:',
+            values.message || ''
+          ].join('\n');
+          window.location.href = `mailto:siddhantechnologiescontact@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+          showToast('Direct sending is available on the hosted site. Opening an email draft for this local preview.', 'info');
+          return;
+        }
+        values._url = window.location.href;
+
+        if (submitButton) submitButton.disabled = true;
+        try {
+          const response = await fetch('https://formsubmit.co/ajax/siddhantechnologiescontact@gmail.com', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(values)
+          });
+          const result = await response.json().catch(() => ({}));
+          if (!response.ok || result.success === false || result.success === 'false') {
+            throw new Error(result.message || 'The enquiry could not be sent.');
+          }
+          contactForm.reset();
+          showToast('Your enquiry was sent successfully.', 'success');
+        } catch (error) {
+          showToast('Could not send your enquiry. Please try again or email us directly.', 'error');
+        } finally {
+          if (submitButton) submitButton.disabled = false;
+        }
       });
     }
     }

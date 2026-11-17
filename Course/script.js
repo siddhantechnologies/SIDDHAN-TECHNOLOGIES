@@ -1210,19 +1210,44 @@ function animateBars() {
 document.getElementById('contactForm')?.addEventListener('submit', e => {
   e.preventDefault();
   const form = e.currentTarget;
-  const values = new FormData(form);
-  const body = [
-    `Name: ${values.get('name') || ''}`,
-    `Phone: ${values.get('phone') || 'Not provided'}`,
-    `Email: ${values.get('email') || ''}`,
-    `Course of Interest: ${values.get('course') || 'Not selected'}`,
-    '',
-    'Message:',
-    values.get('message') || ''
-  ].join('\n');
-  const subject = `Course enquiry from ${values.get('name') || 'website visitor'}`;
-  window.location.href = `mailto:siddhantechnologies@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  showToast('Your email app will open with the enquiry. Send the email to complete it.');
+  const submitButton = form.querySelector('[type="submit"]');
+  const values = Object.fromEntries(new FormData(form).entries());
+  const subject = `Course enquiry from ${values.name || 'website visitor'}`;
+  values._subject = subject;
+  values._replyto = values.email || '';
+
+  if (window.location.protocol === 'file:') {
+    const body = [
+      `Name: ${values.name || ''}`,
+      `Phone: ${values.phone || 'Not provided'}`,
+      `Email: ${values.email || ''}`,
+      `Course of Interest: ${values.course || 'Not selected'}`,
+      '',
+      'Message:',
+      values.message || ''
+    ].join('\n');
+    window.location.href = `mailto:siddhantechnologiescontact@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    showToast('Direct sending is available on the hosted site. Opening an email draft for this local preview.');
+    return;
+  }
+  values._url = window.location.href;
+
+  if (submitButton) submitButton.disabled = true;
+  fetch('https://formsubmit.co/ajax/siddhantechnologiescontact@gmail.com', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify(values)
+  })
+    .then(async response => {
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok || result.success === false || result.success === 'false') {
+        throw new Error(result.message || 'The enquiry could not be sent.');
+      }
+      form.reset();
+      showToast('Your enquiry was sent successfully.');
+    })
+    .catch(() => showToast('Could not send your enquiry. Please try again or email us directly.'))
+    .finally(() => { if (submitButton) submitButton.disabled = false; });
 });
 
 // =============================================
