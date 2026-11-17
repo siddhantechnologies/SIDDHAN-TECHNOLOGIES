@@ -1229,7 +1229,7 @@ document.getElementById('contactForm')?.addEventListener('submit', e => {
     '',
     `Page: ${window.location.href}`
   ].join('\n');
-  const params = new URLSearchParams({ view: 'cm', fs: '1', to: 'siddhantechnologiescontact@gmail.com', su: subject, body });
+  const params = new URLSearchParams({ view: 'cm', fs: '1', to: 'salem@maacmail.com', su: subject, body });
   const gmailUrl = `https://mail.google.com/mail/?${params.toString()}`;
   const gmailWindow = window.open(gmailUrl, '_blank');
   if (gmailWindow) {
