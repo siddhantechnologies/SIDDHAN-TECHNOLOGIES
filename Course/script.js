@@ -248,6 +248,7 @@ function updateSavedCourseUI() {
     modalBookmarkBtn.setAttribute('aria-pressed', String(saved));
     modalBookmarkBtn.title = saved ? 'Remove from Saved Courses' : 'Save Course';
     modalBookmarkBtn.setAttribute('aria-label', modalBookmarkBtn.title);
+    modalBookmarkBtn.querySelector('svg')?.setAttribute('fill', saved ? 'currentColor' : 'none');
   }
 }
 

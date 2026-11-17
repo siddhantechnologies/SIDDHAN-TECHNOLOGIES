@@ -2563,9 +2563,9 @@ button { font-family: var(--font-sans); cursor: pointer; }
   color: #ffffff;
 }
 .modal-btn-bookmark.active {
-  background: rgba(236, 72, 153, 0.15);
-  border-color: #ec4899;
-  color: #ec4899;
+  background: rgba(244, 63, 94, 0.12);
+  border-color: rgba(244, 63, 94, 0.4);
+  color: #f43f5e;
 }
 .modal-footer-actions {
   display: flex;
@@ -3225,6 +3225,12 @@ input[type="reset"] {
   color: #334155;
   background: #ffffff;
   border-color: #cbd5e1;
+}
+
+[data-theme="light"] .modal-btn-bookmark.active {
+  color: #e11d48;
+  background: rgba(244, 63, 94, 0.12);
+  border-color: rgba(244, 63, 94, 0.4);
 }
 
 [data-theme="light"] .footer-highlight {
