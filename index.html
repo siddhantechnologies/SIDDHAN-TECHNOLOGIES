@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <title>SIDDHAN TECHNOLOGIES | Career Intelligence Matrix &amp; Course Mapping Portal</title>
+  <meta name="description" content="SIDDHAN TECHNOLOGIES — The Unified Creative Media &amp; Production Intelligence Platform: 85 Industry Production Roles Across 11 Suites and 13 Specialized Career Courses Across Production Software Tools.">
+  <meta name="theme-color" content="#070b12">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <script src="theme.js"></script>
+  
+  <!-- Google Fonts: Space Grotesk & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Branded Vector Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='4' y1='2' x2='32' y2='34' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0%25' stop-color='%2338bdf8'/%3E%3Cstop offset='50%25' stop-color='%236366f1'/%3E%3Cstop offset='100%25' stop-color='%23ec4899'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpolygon points='18,3 32,10.5 32,25.5 18,33 4,25.5 4,10.5' fill='url(%23g)'/%3E%3Cpolygon points='18,8 28,13.5 18,18 8,13.5' fill='%23ffffff' opacity='0.35'/%3E%3Cpolygon points='18,13 22,18 18,23 14,18' fill='%23ffffff'/%3E%3C/svg%3E">
+
+  <style>
+    :root {
+      --bg-primary: #070b12;
+      --bg-secondary: #0c1220;
+      --bg-card: rgba(14, 21, 37, 0.85);
+      --bg-card-hover: rgba(19, 29, 52, 0.95);
+      --bg-glass: rgba(10, 16, 28, 0.88);
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --text-highlight: #ffffff;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-medium: rgba(255, 255, 255, 0.16);
+      --primary: #6366f1;
+      --primary-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+      --cyan-gradient: linear-gradient(135deg, #38bdf8 0%, #6366f1 50%, #ec4899 100%);
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-full: 9999px;
+      --font-sans: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+      --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    [data-theme="light"] {
+      --bg-primary: #f8fafc;
+      --bg-secondary: #f1f5f9;
+      --bg-card: rgba(255, 255, 255, 0.92);
+      --bg-card-hover: rgba(255, 255, 255, 0.98);
+      --bg-glass: rgba(255, 255, 255, 0.9);
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --text-dim: #64748b;
+      --text-highlight: #020617;
+      --border-subtle: rgba(0, 0, 0, 0.08);
+      --border-medium: rgba(0, 0, 0, 0.15);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Ambient Orbs */
+    .bg-ambient {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.12;
+      animation: floatOrb 14s ease-in-out infinite alternate;
+    }
+    .orb-1 { width: 550px; height: 550px; background: #6366f1; top: -150px; left: -100px; }
+    .orb-2 { width: 500px; height: 500px; background: #ec4899; bottom: -100px; right: -100px; }
+    .orb-3 { width: 450px; height: 450px; background: #38bdf8; top: 40%; left: 35%; }
+    @keyframes floatOrb {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(30px, 30px) scale(1.08); }
+    }
+
+    /* Top Contact Strip */
+    .top-contact-strip {
+      position: relative;
+      z-index: 101;
+      background: rgba(8, 12, 22, 0.96);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.74rem;
+      padding: 7px 0;
+      color: var(--text-muted);
+    }
+    .top-contact-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .tc-brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+    }
+    .pulse-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #38bdf8;
+      box-shadow: 0 0 8px #38bdf8;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.85); } }
+    .tc-links {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-family: var(--font-mono);
+      font-size: 0.73rem;
+    }
+    .tc-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-main);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    .tc-link:hover { color: #38bdf8; }
+    .tc-divider { color: var(--text-dim); }
+
+    /* Sticky Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg-glass);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+    }
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      text-decoration: none;
+      color: var(--text-highlight);
+    }
+    .logo-icon-box {
+      width: 42px; height: 42px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(99, 102, 241, 0.2), rgba(236, 72, 153, 0.15));
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 18px rgba(99, 102, 241, 0.25);
+      transition: var(--transition);
+    }
+    .logo-area:hover .logo-icon-box {
+      transform: rotate(6deg) scale(1.06);
+      border-color: #38bdf8;
+      box-shadow: 0 0 25px rgba(56, 189, 248, 0.45);
+    }
+    .logo-text { display: flex; flex-direction: column; }
+    .logo-brand {
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      line-height: 1.1;
+      color: #ffffff;
+    }
+    .logo-brand span {
+      background: var(--cyan-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+    .logo-sub {
+      font-size: 0.65rem;
+      font-family: var(--font-mono);
+      color: #38bdf8;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .btn-icon-nav {
+      width: 38px; height: 38px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .btn-icon-nav:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      position: relative;
+      z-index: 1;
+      padding: 4.5rem 0 3rem;
+      text-align: center;
+    }
+    .hero-pill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: var(--radius-full);
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: #38bdf8;
+      margin-bottom: 1.75rem;
+    }
+    .hero-title {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.25rem;
+      color: var(--text-highlight);
+    }
+    .gradient-text {
+      background: var(--cyan-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+    .hero-desc {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: var(--text-muted);
+      max-width: 820px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.6;
+    }
+
+    /* Ecosystem Key Stats */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1rem;
+      max-width: 1040px;
+      margin: 0 auto 3.5rem;
+    }
+    .stat-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1rem;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      transition: var(--transition);
+    }
+    .stat-box:hover {
+      border-color: rgba(56, 189, 248, 0.4);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+    .stat-num {
+      font-size: 2rem;
+      font-weight: 800;
+      font-family: var(--font-mono);
+      background: var(--cyan-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.1;
+      margin-bottom: 0.35rem;
+    }
+    .stat-lbl {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-main);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .stat-sub {
+      font-size: 0.68rem;
+      color: var(--text-dim);
+      margin-top: 2px;
+    }
+
+    /* Dual Launchpad Grid */
+    .launchpad-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 4rem;
+      position: relative;
+      z-index: 1;
+    }
+    .portal-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 2.25rem;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(16px);
+      transition: var(--transition);
+      box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.5);
+    }
+    .portal-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      transition: var(--transition);
+    }
+    .portal-card-career::before {
+      background: linear-gradient(90deg, #38bdf8, #6366f1, #ec4899);
+    }
+    .portal-card-course::before {
+      background: linear-gradient(90deg, #ec4899, #8b5cf6, #38bdf8);
+    }
+    .portal-card:hover {
+      border-color: rgba(56, 189, 248, 0.45);
+      transform: translateY(-5px);
+      box-shadow: 0 25px 50px -12px rgba(99, 102, 241, 0.25);
+    }
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .card-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .badge-career {
+      background: rgba(56, 189, 248, 0.15);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.35);
+    }
+    .badge-course {
+      background: rgba(236, 72, 153, 0.15);
+      color: #ec4899;
+      border: 1px solid rgba(236, 72, 153, 0.35);
+    }
+    .card-icon-wrap {
+      width: 48px; height: 48px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .icon-career {
+      background: rgba(99, 102, 241, 0.15);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      color: #818cf8;
+    }
+    .icon-course {
+      background: rgba(236, 72, 153, 0.15);
+      border: 1px solid rgba(236, 72, 153, 0.3);
+      color: #f472b6;
+    }
+    .card-title {
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: var(--text-highlight);
+      margin-bottom: 0.75rem;
+      line-height: 1.2;
+    }
+    .card-desc {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 1.75rem;
+    }
+    .feature-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      margin-bottom: 2rem;
+      flex: 1;
+    }
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.86rem;
+      color: var(--text-main);
+    }
+    .f-check {
+      color: #38bdf8;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .portal-cta-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 13px 24px;
+      border-radius: var(--radius-md);
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: var(--transition);
+      cursor: pointer;
+      border: none;
+    }
+    .portal-path-btn {
+      margin-top: 0.65rem;
+      border: 1px solid rgba(129, 140, 248, 0.45);
+      background: rgba(99, 102, 241, 0.1);
+      color: var(--text-highlight);
+    }
+    .portal-path-btn:hover,
+    .portal-path-btn:focus-visible {
+      color: #ffffff;
+      border-color: #818cf8;
+      background: rgba(99, 102, 241, 0.2);
+      box-shadow: 0 0 20px rgba(99, 102, 241, 0.28);
+      transform: translateY(-2px);
+    }
+    .btn-primary-career {
+      background: linear-gradient(135deg, #38bdf8, #6366f1);
+      color: #ffffff;
+      box-shadow: 0 8px 20px rgba(56, 189, 248, 0.3);
+    }
+    .btn-primary-career:hover {
+      background: linear-gradient(135deg, #6366f1, #38bdf8);
+      box-shadow: 0 12px 28px rgba(56, 189, 248, 0.45);
+      transform: translateY(-2px);
+    }
+    .btn-primary-course {
+      background: linear-gradient(135deg, #6366f1, #ec4899);
+      color: #ffffff;
+      box-shadow: 0 8px 20px rgba(236, 72, 153, 0.3);
+    }
+    .btn-primary-course:hover {
+      background: linear-gradient(135deg, #ec4899, #6366f1);
+      box-shadow: 0 12px 28px rgba(236, 72, 153, 0.45);
+      transform: translateY(-2px);
+    }
+
+    /* Suite Quick Jump Strip */
+    .suite-jump-section {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      margin-bottom: 4rem;
+      position: relative;
+      z-index: 1;
+    }
+    .section-headline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .section-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--text-highlight);
+    }
+    .suite-pills-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+    }
+    .suite-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    .suite-pill:hover {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: #38bdf8;
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    /* Footer */
+    .site-footer {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border-subtle);
+      padding: 3.5rem 0 2rem;
+      position: relative;
+      z-index: 10;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1.2fr 1.2fr 1.4fr;
+      gap: 2.25rem;
+      margin-bottom: 2.5rem;
+    }
+    .footer-col-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-highlight);
+      margin-bottom: 1rem;
+    }
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.82rem;
+      transition: var(--transition);
+    }
+    .footer-links a:not(.footer-portal-link):hover {
+      color: #38bdf8;
+      padding-left: 4px;
+    }
+    .footer-portal-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 8px;
+      background: rgba(56, 189, 248, 0.1);
+      color: #38bdf8 !important;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: var(--transition);
+    }
+    .footer-portal-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 14px rgba(56, 189, 248, 0.25);
+    }
+    .footer-contact-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .footer-contact-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      line-height: 1.4;
+    }
+    .footer-contact-list a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    .footer-contact-list a:hover { color: #38bdf8; }
+    .footer-bottom {
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 1.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .launchpad-grid { grid-template-columns: 1fr; }
+      .stats-row { grid-template-columns: repeat(3, 1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+      .suite-pills-wrap { justify-content: center; }
+      .portal-card .card-top {
+        justify-content: flex-start;
+        gap: 0.75rem;
+      }
+      .portal-card .card-badge {
+        flex: 1 1 auto;
+        min-width: 0;
+        justify-content: center;
+        text-align: center;
+      }
+      .portal-card .card-icon-wrap { flex: 0 0 48px; }
+      .footer-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .footer-grid > div { width: 100%; }
+      .footer-grid > div:first-child .logo-brand { justify-content: center; }
+      .footer-grid > div:first-child .logo-sub {
+        display: block;
+        text-align: center;
+      }
+      .footer-grid > div:first-child p { margin-inline: auto; }
+      .footer-links { align-items: center; }
+      .footer-portal-link { margin-inline: auto; }
+    }
+
+    /* Unified workspace */
+    .portal-shell { display: none; position: relative; z-index: 2; padding: 1.25rem 0 2rem; }
+    body.portal-mode main,
+    body.portal-mode .site-footer { display: none; }
+    body.portal-mode .portal-shell { display: block; }
+    .portal-shell-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 1.25rem;
+      margin-bottom: 1rem;
+    }
+    .portal-shell-kicker {
+      color: #38bdf8;
+      font-family: var(--font-mono);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: .35rem;
+    }
+    .portal-shell-title { color: var(--text-highlight); font-size: clamp(1.35rem, 3vw, 2rem); line-height: 1.2; }
+    .portal-shell-copy { color: var(--text-muted); font-size: .88rem; margin-top: .4rem; }
+    .portal-tabs { display: flex; align-items: center; gap: .55rem; flex-wrap: wrap; }
+    .portal-tab {
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-full);
+      background: var(--bg-card);
+      color: var(--text-muted);
+      padding: .62rem .95rem;
+      font: 700 .82rem var(--font-sans);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .portal-tab:hover, .portal-tab[aria-pressed="true"] {
+      color: var(--text-highlight);
+      border-color: rgba(56, 189, 248, .65);
+      background: rgba(56, 189, 248, .12);
+    }
+    .portal-frame-stage {
+      height: calc(100vh - 225px);
+      height: calc(100dvh - 225px);
+      min-height: 500px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      background: var(--bg-primary);
+      box-shadow: 0 18px 50px rgba(0, 0, 0, .22);
+    }
+    .portal-frame-stage iframe { display: none; width: 100%; height: 100%; border: 0; background: #070b12; }
+    .portal-frame-stage iframe.is-active { display: block; }
+    .portal-loading {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: none;
+      place-items: center;
+      padding: 2rem;
+      text-align: center;
+      color: var(--text-muted);
+      background: var(--bg-primary);
+    }
+    .portal-loading.is-visible { display: grid; }
+    .portal-loading strong { display: block; color: var(--text-highlight); font-size: 1.05rem; margin-bottom: .35rem; }
+    /* Keep the contact strip in step with the selected page theme. */
+    .top-contact-strip .tc-brand { color: #94a3b8; }
+    .top-contact-strip .tc-link { color: #cbd5e1; }
+    [data-theme="light"] .top-contact-strip {
+      background: rgba(248, 250, 252, .96);
+      border-bottom-color: rgba(15, 23, 42, .1);
+      color: #475569;
+    }
+    [data-theme="light"] .top-contact-strip .tc-brand,
+    [data-theme="light"] .top-contact-strip .tc-link { color: #475569; }
+    [data-theme="light"] .top-contact-strip .tc-brand strong { color: #0369a1; }
+    [data-theme="light"] .top-contact-strip .tc-divider { color: #94a3b8; }
+    [data-theme="light"] .logo-brand { color: #0f172a; }
+    [data-theme="light"] .logo-brand span {
+      color: #0f172a;
+      background: none;
+      -webkit-text-fill-color: #0f172a;
+    }
+    html:not([data-theme="light"]) .logo-brand span {
+      color: #ffffff;
+      background: none;
+      -webkit-text-fill-color: #ffffff;
+    }
+    [data-theme="light"] .logo-sub { color: #075985; }
+    html:not([data-theme="light"]) .site-header .logo-brand,
+    html:not([data-theme="light"]) .site-header .logo-brand span {
+      color: #ffffff;
+      background: none;
+      -webkit-text-fill-color: #ffffff;
+    }
+    [data-theme="light"] .site-header .logo-brand {
+      color: #0f172a;
+      -webkit-text-stroke: 0;
+      text-shadow: none;
+    }
+    [data-theme="light"] .site-header .logo-brand span {
+      color: #0f172a;
+      background: none;
+      -webkit-text-fill-color: #0f172a;
+      -webkit-text-stroke: 0;
+      text-shadow: none;
+    }
+    @media (max-width: 760px) {
+      .top-contact-strip { display: none; }
+      .nav-container { height: 60px; gap: 0.5rem; }
+      .logo-area { min-width: 0; gap: 0.5rem; }
+      .logo-icon-box { width: 36px; height: 36px; flex: 0 0 36px; }
+      .logo-text { min-width: 0; }
+      .logo-brand { font-size: 0.95rem; letter-spacing: 0.02em; gap: 0.2rem; white-space: nowrap; }
+      .logo-sub { font-size: 0.52rem; letter-spacing: 0.08em; white-space: nowrap; }
+      .nav-actions { gap: 6px; }
+      .btn-icon-nav { width: 36px; height: 36px; flex: 0 0 36px; }
+      .portal-shell-header { align-items: flex-start; flex-direction: column; }
+      .portal-tabs { width: 100%; }
+      .portal-tab { flex: 1 1 auto; }
+      .portal-frame-stage { height: calc(100vh - 245px); height: calc(100dvh - 245px); min-height: 440px; }
+    }
+
+    @media (max-width: 380px) {
+      .logo-brand { font-size: 0.84rem; letter-spacing: 0.01em; }
+      .logo-sub { font-size: 0.47rem; }
+      .logo-icon-box { width: 34px; height: 34px; flex-basis: 34px; }
+    }
+
+    /* Keep native action buttons consistent with the rest of the portal. */
+    button,
+    [role="button"],
+    input[type="button"],
+    input[type="submit"],
+    input[type="reset"] {
+      border-radius: var(--radius-sm, 8px) !important;
+    }
+    .portal-tab,
+    .btn-icon-nav { border-radius: 10px !important; }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient Glowing Atmosphere -->
+  <div class="bg-ambient">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <!-- Top Contact Strip -->
+  <div class="top-contact-strip">
+    <div class="container top-contact-inner">
+      <div class="tc-brand">
+        <span class="pulse-dot"></span>
+        <span><strong>SIDDHAN TECHNOLOGIES</strong> — Career Intelligence Matrix</span>
+      </div>
+      <div class="tc-links">
+        <a href="tel:+919600747753" class="tc-link" title="Call Siddhan Technologies">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          +91 96007 47753
+        </a>
+        <span class="tc-divider">|</span>
+        <a href="mailto:siddhantechnologies@gmail.com" class="tc-link" title="Email Siddhan Technologies">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          siddhantechnologies@gmail.com
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navigation Header -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="index.html" class="logo-area" title="SIDDHAN TECHNOLOGIES" data-open-portal="overview">
+        <div class="logo-icon-box">
+          <svg width="30" height="30" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="rootGrad1" x1="4" y1="2" x2="32" y2="34" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#38bdf8"/>
+                <stop offset="0.5" stop-color="#6366f1"/>
+                <stop offset="1" stop-color="#ec4899"/>
+              </linearGradient>
+              <linearGradient id="rootGrad2" x1="8" y1="6" x2="28" y2="30" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#6366f1"/>
+                <stop offset="1" stop-color="#ec4899"/>
+              </linearGradient>
+            </defs>
+            <polygon points="18,3 32,10.5 32,25.5 18,33 4,25.5 4,10.5" fill="url(#rootGrad1)" opacity="0.95"/>
+            <polygon points="18,8 28,13.5 28,22.5 18,28 8,22.5 8,13.5" fill="url(#rootGrad2)" opacity="0.75"/>
+            <polygon points="18,8 28,13.5 18,18 8,13.5" fill="#ffffff" opacity="0.3"/>
+            <polygon points="8,13.5 18,18 18,28 8,22.5" fill="#030712" opacity="0.35"/>
+            <polygon points="28,13.5 18,18 18,28 28,22.5" fill="url(#rootGrad1)" opacity="0.35"/>
+            <polygon points="18,13 22,18 18,23 14,18" fill="#ffffff" opacity="0.95"/>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <div class="logo-brand">SIDDHAN <span>TECHNOLOGIES</span></div>
+          <div class="logo-sub">CAREER INTELLIGENCE MATRIX</div>
+        </div>
+      </a>
+
+      <div class="nav-actions">
+        <button class="btn-icon-nav" id="themeToggleBtn" title="Toggle Light/Dark Theme">
+          <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <main class="container">
+    <section class="hero-section">
+      <div class="hero-pill-badge">
+        <span class="pulse-dot"></span>
+        <span>SIDDHAN TECHNOLOGIES | UNIFIED INTELLIGENCE SUITE</span>
+      </div>
+
+      <h1 class="hero-title">
+        The Master <span class="gradient-text">Creative Technology</span> &amp; <br>
+        Career Intelligence Matrix
+      </h1>
+
+      <p class="hero-desc">
+        A seamless dual-portal ecosystem uniting <strong>85 industry production roles</strong> across <strong>11 software suites</strong> with <strong>13 specialized career courses</strong> across <strong>32+ production tools</strong>.
+      </p>
+
+      <!-- Key Metrics -->
+      <div class="stats-row">
+        <div class="stat-box">
+          <div class="stat-num">85</div>
+          <div class="stat-lbl">Production Roles</div>
+          <div class="stat-sub">100% Industry Verified</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">11</div>
+          <div class="stat-lbl">Software Suites</div>
+          <div class="stat-sub">3D, VFX, Post &amp; Audio</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">13</div>
+          <div class="stat-lbl">Career Courses</div>
+          <div class="stat-sub">3 Core Families</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">32+</div>
+          <div class="stat-lbl">Software Tools</div>
+          <div class="stat-sub">Curriculum Breakdown</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">5</div>
+          <div class="stat-lbl">Studio Hubs</div>
+          <div class="stat-sub">Bengaluru, Mumbai, etc.</div>
+        </div>
+      </div>
+
+      <!-- Dual Launchpad Cards -->
+      <div class="launchpad-grid">
+        
+        <!-- Portal 1: Career Intelligence Matrix -->
+        <div class="portal-card portal-card-career">
+          <div class="card-top">
+            <span class="card-badge badge-career">Industry Directory &bull; 85 Roles</span>
+            <div class="card-icon-wrap icon-career">
+              <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none">
+                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                <polyline points="2 17 12 22 22 17"></polyline>
+                <polyline points="2 12 12 17 22 12"></polyline>
+              </svg>
+            </div>
+          </div>
+          <h2 class="card-title">Career Intelligence Matrix</h2>
+          <p class="card-desc">
+            Explore 85 specialized industry production roles categorized across 11 software suites. Features studio pipeline roadmaps, career matcher wizard, side-by-side comparison, and vector PDF dossiers.
+          </p>
+          <ul class="feature-list">
+            <li class="feature-item"><span class="f-check">&check;</span> 85 Roles across Unreal Engine 5, Maya, Max, Nuke, Resolve &amp; more</li>
+            <li class="feature-item"><span class="f-check">&check;</span> 5 Studio Production Pipelines (Gaming, VFX, Post, ArchViz, Fashion)</li>
+            <li class="feature-item"><span class="f-check">&check;</span> Interactive 3-Step Career Pathway Matcher</li>
+            <li class="feature-item"><span class="f-check">&check;</span> Client-Side Vector PDF Blueprint &amp; Executive Dossier Export</li>
+          </ul>
+          <a href="Career/index.html" class="portal-cta-btn btn-primary-career" data-portal-link="career" data-standalone="true">
+            <span>Launch Career Matrix (85 Roles)</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+
+        </div>
+
+        <!-- Portal 2: Course & Software Topic Mapping -->
+        <div class="portal-card portal-card-course">
+          <div class="card-top">
+            <span class="card-badge badge-course">Curriculum Directory &bull; 13 Courses</span>
+            <div class="card-icon-wrap icon-course">
+              <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+              </svg>
+            </div>
+          </div>
+          <h2 class="card-title">Course &amp; Software Topic Mapping</h2>
+          <p class="card-desc">
+            Deep dive into 13 specialized courses and 32+ software applications covering 150+ granular curriculum module rows, duration, practical hours, and 3 core production families.
+          </p>
+          <ul class="feature-list">
+            <li class="feature-item"><span class="f-check">&check;</span> 13 Courses across 3 Families (3D Animation, VFX &amp; Post, Digital Media)</li>
+            <li class="feature-item"><span class="f-check">&check;</span> 32+ Production Tools with Granular Module Topic Mapping</li>
+            <li class="feature-item"><span class="f-check">&check;</span> Master Filter Table &amp; Domain Breakdown Visualizer</li>
+            <li class="feature-item"><span class="f-check">&check;</span> Official Syllabus PDF Blueprint Generator with Offline Engine</li>
+          </ul>
+          <a href="Course/index.html" class="portal-cta-btn btn-primary-course" data-portal-link="course" data-standalone="true">
+            <span>Launch Course Mapping (13 Courses)</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Quick Suite Exploration Strip -->
+      <section class="suite-jump-section">
+        <div class="section-headline">
+          <h3 class="section-title">Core Software Suites Covered Across Both Platforms</h3>
+          <span style="font-family: var(--font-mono); font-size: 0.8rem; color: #38bdf8;">100% Industry Aligned</span>
+        </div>
+        <div class="suite-pills-wrap">
+          <a href="Career/index.html?software=unreal" class="suite-pill" data-standalone="true">Unreal Engine 5 (11 Roles)</a>
+          <a href="Career/index.html?software=max" class="suite-pill" data-standalone="true">Autodesk 3ds Max (9 Roles)</a>
+          <a href="Career/index.html?software=maya" class="suite-pill" data-standalone="true">Autodesk Maya (9 Roles)</a>
+          <a href="Career/index.html?software=substance" class="suite-pill" data-standalone="true">Substance 3D Painter (9 Roles)</a>
+          <a href="Career/index.html?software=nuke" class="suite-pill" data-standalone="true">Foundry Nuke (8 Roles)</a>
+          <a href="Career/index.html?software=photoshop" class="suite-pill" data-standalone="true">Adobe Photoshop (8 Roles)</a>
+          <a href="Career/index.html?software=resolve" class="suite-pill" data-standalone="true">DaVinci Resolve (7 Roles)</a>
+          <a href="Career/index.html?software=marvelous" class="suite-pill" data-standalone="true">Marvelous Designer (6 Roles)</a>
+          <a href="Career/index.html?software=premiere" class="suite-pill" data-standalone="true">Adobe Premiere Pro (6 Roles)</a>
+          <a href="Career/index.html?software=aftereffects" class="suite-pill" data-standalone="true">Adobe After Effects (6 Roles)</a>
+          <a href="Career/index.html?software=audition" class="suite-pill" data-standalone="true">Adobe Audition (6 Roles)</a>
+          <a href="Course/index.html" class="suite-pill" data-standalone="true" style="border-color: #ec4899; color: #ec4899;">View 13 Course Syllabi &rarr;</a>
+        </div>
+      </section>
+
+    </section>
+  </main>
+
+  <section class="portal-shell" id="portal-shell" aria-label="Unified course and career workspace">
+    <div class="container">
+      <div class="portal-shell-header">
+        <div>
+          <div class="portal-shell-kicker">Unified workspace</div>
+          <h1 class="portal-shell-title" id="portal-view-title">Course &amp; Software Topic Mapping</h1>
+          <p class="portal-shell-copy" id="portal-view-copy">Explore the full course catalog, software topics, filters, and syllabus blueprints.</p>
+        </div>
+        <nav class="portal-tabs" aria-label="Switch workspace">
+          <button class="portal-tab" type="button" data-portal-view="overview" aria-pressed="false">Overview</button>
+          <button class="portal-tab" type="button" data-portal-view="course" aria-pressed="true">Course Mapping</button>
+          <button class="portal-tab" type="button" data-portal-view="career" aria-pressed="false">Career Matrix</button>
+        </nav>
+      </div>
+      <div class="portal-frame-stage">
+        <div class="portal-loading is-visible" id="portal-loading" role="status" aria-live="polite">
+          <div><strong id="portal-loading-title">Loading workspace…</strong><span id="portal-loading-copy">The course and career tools share this page.</span></div>
+        </div>
+        <iframe id="course-portal-frame" title="Course and Software Topic Mapping" data-theme-frame data-src="Course/index.html" loading="lazy"></iframe>
+        <iframe id="career-portal-frame" title="Career Intelligence Matrix" data-theme-frame data-src="Career/index.html" loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="logo-brand" style="margin-bottom: 0.75rem;">SIDDHAN <span>TECHNOLOGIES</span></div>
+          <div class="logo-sub" style="margin-bottom: 0.85rem;">CAREER INTELLIGENCE MATRIX</div>
+          <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; max-width: 380px;">
+            The unified creative media and technology intelligence platform for 3D modeling, VFX, character animation, video editing, motion design, digital audio, and Unreal Engine real-time development.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Career Intelligence</h4>
+          <ul class="footer-links">
+            <li><a href="Career/index.html" data-standalone="true">85 Roles Directory</a></li>
+            <li><a href="Career/index.html" data-standalone="true">11 Software Suites</a></li>
+            <li><a href="Career/index.html" data-standalone="true">Studio Production Pipelines</a></li>
+            <li><a href="Career/index.html" data-standalone="true">Career Matcher Wizard</a></li>
+            <li><a href="Career/index.html" data-standalone="true">Role Comparison Matrix</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Course Curriculum</h4>
+          <ul class="footer-links">
+            <li><a href="Course/index.html" data-standalone="true">13 Course Syllabi</a></li>
+            <li><a href="Course/index.html" data-standalone="true">32+ Software Topics</a></li>
+            <li><a href="Course/index.html" data-standalone="true">3 Production Families</a></li>
+            <li><a href="Course/index.html" data-standalone="true">Master Curriculum Table</a></li>
+            <li><a href="Course/index.html" data-standalone="true">Syllabus PDF Blueprint</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html" data-open-portal="overview">Home</a></li>
+            <li><a href="Course/index.html" data-standalone="true">Course Catalog</a></li>
+            <li><a href="Career/index.html?view=analytics" data-standalone="true">Software Directory</a></li>
+            <li><a href="Career/index.html?view=roadmaps" data-standalone="true">Production Domains</a></li>
+            <li><a href="Career/index.html#contact" data-standalone="true">Contact Us</a></li>
+            <li style="margin-top: 0.65rem;">
+              <a href="Career/index.html" class="footer-portal-link" data-standalone="true">
+                <span>🎯 Explore Career Matrix &rarr;</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          &copy; 2026 SIDDHAN TECHNOLOGIES. All Rights Reserved. Career Intelligence Matrix — Aligned with Premier AAA Gaming, Film VFX &amp; OTT Media Standards.
+        </div>
+        <div>
+          Headquarters &amp; Hubs: Coimbatore &bull; Salem
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Shared theme state keeps the Home, Course, and Career pages in sync.
+    window.SiddhanTheme?.bindToggle(document.getElementById('themeToggleBtn'));
+
+    // Dynamic Link Resolver
+    const careerDirectory = window.location.hostname.toLowerCase() === 'siddhantechnologies.github.io' ? 'Maac' : 'Career';
+    function initDynamicPortalLinks() {
+      const path = (window.location.pathname || '').replace(/\\/g, '/').toLowerCase();
+      const isRoot = !path.includes('/course') && !path.includes('/career');
+      document.querySelectorAll('a[href^="Career/index.html"], iframe[data-src^="Career/index.html"]').forEach(el => {
+        const attribute = el.tagName === 'IFRAME' ? 'data-src' : 'href';
+        el.setAttribute(attribute, el.getAttribute(attribute).replace(/^Career\//, `${careerDirectory}/`));
+      });
+      const courseUrl = isRoot ? 'Course/index.html' : (path.includes('/career') ? '../Course/index.html' : 'index.html');
+      const careerUrl = isRoot ? `${careerDirectory}/index.html` : (path.includes('/course') ? `../${careerDirectory}/index.html` : 'index.html');
+
+      document.querySelectorAll('[data-portal-link="course"]').forEach(el => el.setAttribute('href', courseUrl));
+      document.querySelectorAll('[data-portal-link="career"]').forEach(el => el.setAttribute('href', careerUrl));
+    }
+    initDynamicPortalLinks();
+
+    // Keep both existing tools inside one switchable workspace.
+    const portalViews = {
+      course: {
+        frame: document.getElementById('course-portal-frame'),
+        title: 'Course & Software Topic Mapping',
+        copy: 'Explore the course catalog, software topics, curriculum filters, and syllabus blueprints.',
+        loading: 'Loading course mapping…'
+      },
+      career: {
+        frame: document.getElementById('career-portal-frame'),
+        title: 'Career Intelligence Matrix',
+        copy: 'Browse production roles, software suites, studio pipelines, and career pathway tools.',
+        loading: 'Loading career matrix…'
+      }
+    };
+    const portalLoading = document.getElementById('portal-loading');
+    const portalTitle = document.getElementById('portal-view-title');
+    const portalCopy = document.getElementById('portal-view-copy');
+    const portalLoadingTitle = document.getElementById('portal-loading-title');
+    const portalTabs = document.querySelectorAll('[data-portal-view]');
+    const portalRootPath = new URL('index.html', window.location.href).pathname.toLowerCase();
+    const portalRoutePaths = {
+      overview: portalRootPath,
+      course: new URL('Course/index.html', window.location.href).pathname.toLowerCase(),
+      career: new URL(`${careerDirectory}/index.html`, window.location.href).pathname.toLowerCase()
+    };
+
+    function updatePortalAddress(view) {
+      try {
+        const nextUrl = new URL(window.location.href);
+        nextUrl.hash = view === 'overview' ? '' : view;
+        window.history.replaceState(null, '', nextUrl.href);
+      } catch (error) {
+        // The workspace still works when opened directly from the file system.
+      }
+    }
+
+    function setPortalView(view, updateAddress = true) {
+      if (view === 'overview') {
+        document.body.classList.remove('portal-mode');
+        portalTabs.forEach(tab => tab.setAttribute('aria-pressed', 'false'));
+        if (updateAddress && window.location.hash) updatePortalAddress('overview');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+
+      const selectedView = portalViews[view];
+      if (!selectedView) return;
+
+      document.body.classList.add('portal-mode');
+      portalTitle.textContent = selectedView.title;
+      portalCopy.textContent = selectedView.copy;
+      portalLoadingTitle.textContent = selectedView.loading;
+      portalTabs.forEach(tab => tab.setAttribute('aria-pressed', String(tab.dataset.portalView === view)));
+      Object.entries(portalViews).forEach(([key, item]) => item.frame.classList.toggle('is-active', key === view));
+
+      const frame = selectedView.frame;
+      const alreadyLoaded = frame.dataset.loaded === 'true';
+      portalLoading.classList.toggle('is-visible', !alreadyLoaded);
+      if (!alreadyLoaded) {
+        frame.dataset.loaded = 'true';
+        frame.src = frame.dataset.src;
+      }
+
+      if (updateAddress) updatePortalAddress(view);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    Object.values(portalViews).forEach(({ frame }) => {
+      frame.addEventListener('load', () => {
+        frame.dataset.ready = 'true';
+        if (frame.classList.contains('is-active')) portalLoading.classList.remove('is-visible');
+      });
+    });
+
+    function filterCareerByHub(hubName) {
+      const frame = portalViews.career.frame;
+      const sendFilter = () => frame.contentWindow.postMessage({
+        type: 'siddhan-portal-filter-hub',
+        hubName
+      }, '*');
+
+      if (frame.dataset.ready === 'true') sendFilter();
+      else frame.addEventListener('load', sendFilter, { once: true });
+    }
+
+    function filterCourseBySoftware(softwareName) {
+      const frame = portalViews.course.frame;
+      const sendFilter = () => frame.contentWindow.postMessage({
+        type: 'siddhan-portal-filter-software',
+        softwareName
+      }, '*');
+
+      if (frame.dataset.ready === 'true') sendFilter();
+      else frame.addEventListener('load', sendFilter, { once: true });
+    }
+
+    function launchCareerWizard() {
+      const frame = portalViews.career.frame;
+      const sendLaunch = () => frame.contentWindow.postMessage({
+        type: 'siddhan-portal-open-career-wizard'
+      }, '*');
+
+      if (frame.dataset.ready === 'true') sendLaunch();
+      else frame.addEventListener('load', sendLaunch, { once: true });
+    }
+
+    function portalForHref(href) {
+      try {
+        const target = new URL(href, window.location.href);
+        const path = target.pathname.toLowerCase();
+        if (path === portalRoutePaths.course) return 'course';
+        if (path === portalRoutePaths.career) return 'career';
+        if (path === portalRoutePaths.overview && !target.hash) return 'overview';
+      } catch (error) {
+        return null;
+      }
+      return null;
+    }
+
+    document.addEventListener('click', event => {
+      const link = event.target.closest('a[href]');
+      if (!link || link.dataset.standalone === 'true' || link.target === '_blank' || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      const route = link.dataset.openPortal || link.dataset.portalLink || portalForHref(link.href);
+      if (!route) return;
+      event.preventDefault();
+      setPortalView(route === 'hub' ? 'overview' : route);
+    });
+
+    window.addEventListener('message', event => {
+      const fromWorkspace = Object.values(portalViews).some(({ frame }) => frame.contentWindow === event.source);
+      const message = event.data;
+      if (!fromWorkspace || !message || message.type !== 'siddhan-portal-navigate') return;
+      const view = message.view === 'hub' ? 'overview' : message.view;
+      if (view === 'career' && message.hubName) filterCareerByHub(message.hubName);
+      setPortalView(view);
+      if (view === 'course' && message.softwareName) filterCourseBySoftware(message.softwareName);
+      if (view === 'career' && message.openWizard) launchCareerWizard();
+    });
+
+    const hashView = window.location.hash.replace('#', '').toLowerCase();
+    if (hashView === 'course' || hashView === 'career') setPortalView(hashView, false);
+    portalTabs.forEach(tab => tab.addEventListener('click', () => setPortalView(tab.dataset.portalView)));
+  </script>
+</body>
+</html>

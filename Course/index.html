@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SIDDHAN TECHNOLOGIES | Course &amp; Software Topic Mapping</title>
+  <script src="../theme.js"></script>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='4' y1='2' x2='32' y2='34' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0%25' stop-color='%2338bdf8'/%3E%3Cstop offset='50%25' stop-color='%236366f1'/%3E%3Cstop offset='100%25' stop-color='%23ec4899'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpolygon points='18,3 32,10.5 32,25.5 18,33 4,25.5 4,10.5' fill='url(%23g)'/%3E%3Cpolygon points='18,8 28,13.5 18,18 8,13.5' fill='%23ffffff' opacity='0.35'/%3E%3Cpolygon points='18,13 22,18 18,23 14,18' fill='%23ffffff'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=20261117-13" />
+  <!-- jsPDF Engine (Local offline first with CDN fallback) -->
+  <script src="js/jspdf.umd.min.js"></script>
+  <script>
+    if (typeof window.jspdf === 'undefined' && typeof window.jsPDF === 'undefined') {
+      document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"><\/script>');
+    }
+  </script>
+</head>
+<body>
+
+  <!-- AMBIENT ORBS -->
+  <div class="ambient" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <!-- ===== TOP CONTACT STRIP (shared across both portals) ===== -->
+  <div class="top-contact-strip">
+    <div class="container top-contact-inner">
+      <div class="tc-brand">
+        <span class="pulse-dot" style="width:6px;height:6px"></span>
+        <span><strong>SIDDHAN TECHNOLOGIES</strong> — Career Intelligence Matrix</span>
+      </div>
+      <div class="tc-links">
+        <a href="tel:+919600747753" class="tc-link" title="Call Siddhan Technologies">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          +91 96007 47753
+        </a>
+        <span class="tc-divider">|</span>
+        <a href="mailto:siddhantechnologies@gmail.com" class="tc-link" title="Email Siddhan Technologies">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          siddhantechnologies@gmail.com
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== HEADER / NAVBAR ===== -->
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-container header-inner">
+
+      <!-- Brand Logo: SIDDHAN TECHNOLOGIES -->
+      <a class="logo-area brand" href="../index.html" data-portal-link="hub" title="SIDDHAN TECHNOLOGIES — Home">
+        <div class="logo-icon-box">
+          <svg class="brand-logo-svg" width="30" height="30" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="cLogoGrad1" x1="4" y1="2" x2="32" y2="34" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#38bdf8"/>
+                <stop offset="0.5" stop-color="#6366f1"/>
+                <stop offset="1" stop-color="#ec4899"/>
+              </linearGradient>
+              <linearGradient id="cLogoGrad2" x1="8" y1="6" x2="28" y2="30" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#6366f1"/>
+                <stop offset="1" stop-color="#ec4899"/>
+              </linearGradient>
+            </defs>
+            <polygon points="18,3 32,10.5 32,25.5 18,33 4,25.5 4,10.5" fill="url(#cLogoGrad1)" opacity="0.95"/>
+            <polygon points="18,8 28,13.5 28,22.5 18,28 8,22.5 8,13.5" fill="url(#cLogoGrad2)" opacity="0.75"/>
+            <polygon points="18,8 28,13.5 18,18 8,13.5" fill="#ffffff" opacity="0.3"/>
+            <polygon points="8,13.5 18,18 18,28 8,22.5" fill="#030712" opacity="0.35"/>
+            <polygon points="28,13.5 18,18 18,28 28,22.5" fill="url(#cLogoGrad1)" opacity="0.35"/>
+            <polygon points="18,13 22,18 18,23 14,18" fill="#ffffff" opacity="0.95"/>
+          </svg>
+        </div>
+        <div class="logo-text brand-text">
+          <div class="logo-brand brand-name">SIDDHAN <span>TECHNOLOGIES</span></div>
+          <div class="logo-sub brand-sub">CAREER INTELLIGENCE MATRIX</div>
+        </div>
+      </a>
+
+      <!-- Center Desktop Navigation Tabs -->
+      <nav class="nav-center view-nav" id="viewNav">
+        <button class="nav-tab-btn view-tab active" data-view="cards">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+          <span>Catalog</span>
+        </button>
+
+        <button class="nav-tab-btn view-tab" data-view="table">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"></path></svg>
+          <span>Master Table</span>
+        </button>
+
+        <button class="nav-tab-btn view-tab" data-view="analytics">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+          <span>Analytics</span>
+        </button>
+
+        <button class="nav-tab-btn view-tab" data-view="domains">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
+          <span>Domains</span>
+        </button>
+
+      </nav>
+
+      <!-- Nav Actions (Desktop & Mobile Friendly) -->
+      <div class="nav-actions header-actions">
+        <!-- Dynamic Portal Switcher: Career Matrix -->
+        <a href="../Career/index.html" class="portal-nav-pill" data-portal-link="career" title="Jump to Career Intelligence Matrix (85 Roles)">
+          <svg viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="2" fill="none">
+            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+            <polyline points="2 17 12 22 22 17"></polyline>
+            <polyline points="2 12 12 17 22 12"></polyline>
+          </svg>
+          <span class="portal-pill-text">Career Matrix</span>
+          <span class="portal-pill-badge">85</span>
+        </a>
+
+        <!-- Theme Toggle -->
+        <button class="btn-icon-nav icon-btn" id="themeToggle" title="Toggle Light/Dark Theme">
+          <svg class="sun-icon" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </button>
+
+        <!-- Compare Selected Courses -->
+        <button class="btn-icon-nav icon-btn" type="button" onclick="window.SiddhanCourse.openCourseCompare()" title="Compare selected courses" aria-label="Compare selected courses">
+          <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true">
+            <polyline points="16 3 21 3 21 8"></polyline>
+            <line x1="4" y1="20" x2="21" y2="3"></line>
+            <polyline points="21 16 21 21 16 21"></polyline>
+            <line x1="15" y1="15" x2="21" y2="21"></line>
+            <line x1="4" y1="4" x2="9" y2="9"></line>
+          </svg>
+          <span class="saved-courses-badge" id="courseCompareNavCount">0</span>
+        </button>
+
+        <!-- Saved Courses -->
+        <button class="btn-icon-nav icon-btn" type="button" onclick="window.SiddhanCourse.openSavedCourses()" title="View saved courses" aria-label="Open saved courses">
+          <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true">
+            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+          </svg>
+          <span class="saved-courses-badge" id="savedCourseNavCount">0</span>
+        </button>
+
+        <a href="../Career/index.html?openWizard=1" class="btn-find-path" onclick="window.SiddhanCourse.openCareerWizard(event)" title="Find your career path" aria-label="Open the 3-step career pathway matcher">
+          <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><path d="M12 3v3m0 12v3M3 12h3m12 0h3"></path><circle cx="12" cy="12" r="7"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+          <span class="find-path-label">Find My Path</span>
+        </a>
+
+        <!-- CTA Button -->
+        <a href="#contact" class="btn-primary-action btn btn-cta">
+          <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+          <span>Enquire Now</span>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Mobile navigation shared with the Career Matrix -->
+  <nav class="mobile-bottom-nav" aria-label="Mobile navigation">
+    <button class="mobile-nav-item active" data-view="cards" onclick="window.switchView('cards')">
+      <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+      <span>Catalog</span>
+    </button>
+
+    <button class="mobile-nav-item" data-view="table" onclick="window.switchView('table')">
+      <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"></path></svg>
+      <span>Matrix</span>
+    </button>
+
+    <button class="mobile-nav-item" data-view="analytics" onclick="window.switchView('analytics')">
+      <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+      <span>Analytics</span>
+    </button>
+
+    <button class="mobile-nav-item" data-view="domains" onclick="window.switchView('domains')">
+      <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
+      <span>Domains</span>
+    </button>
+
+    <button class="mobile-nav-item" type="button" data-mobile-action="saved" onclick="window.SiddhanCourse.openSavedCourses()" aria-label="Open saved courses">
+      <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+      <span>Saved</span>
+      <span class="mobile-nav-badge" id="mobileSavedCourseNavCount" style="display:none;">0</span>
+    </button>
+
+    <a href="../Career/index.html" class="mobile-nav-item mobile-portal-btn" data-portal-link="career" title="Open Career Matrix">
+      <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+      <span>Career</span>
+    </a>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="hero">
+    <div class="container hero-inner">
+      <div class="eyebrow-pill">
+        <span class="pulse-dot"></span>
+        <span class="eyebrow-text">SIDDHAN TECHNOLOGIES | Course &amp; Software Topic Mapping</span>
+      </div>
+
+      <h1 class="hero-title">
+        Master The <span class="grad-text-cyan">3D, Animation &amp; VFX</span> &amp;<br/>
+        <span class="grad-text-purple">Creative Media</span> Universe
+      </h1>
+
+      <p class="hero-sub">
+        Structured curriculum breakdown across <strong>13 specialized industry courses</strong> and core production software tools &mdash; covering 3D Animation, VFX, Motion Graphics, Video Post, Digital Media, UI/UX &amp; Graphic Design.
+      </p>
+
+      <!-- Stat Cards -->
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-num">13</div>
+          <div class="stat-label">Specialized Courses</div>
+          <div class="stat-sub">Across 3 Core Families</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">32+</div>
+          <div class="stat-label">Software Tools</div>
+          <div class="stat-sub">3D, VFX, Motion, UI/UX &amp; Design</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">150+</div>
+          <div class="stat-label">Module Rows</div>
+          <div class="stat-sub">Granular Curriculum Detail</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Studio Aligned</div>
+          <div class="stat-sub">From 3D Animation to UI/UX</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SOFTWARE FILTER STRIP ===== -->
+  <section class="filter-strip" id="filterStrip">
+    <div class="container">
+      <div class="sw-filters" id="swFilters">
+        <button class="sw-pill active" data-filter="all">
+          <span class="pill-dot" style="background:#6366f1"></span>
+          All Courses <span class="pill-count">13</span>
+        </button>
+        <button class="sw-pill" data-filter="3danim">
+          <span class="pill-dot" style="background:#06b6d4"></span>
+          3D Animation <span class="pill-count">4</span>
+        </button>
+        <button class="sw-pill" data-filter="vfx">
+          <span class="pill-dot" style="background:#f59e0b"></span>
+          VFX &amp; Post-Production <span class="pill-count">5</span>
+        </button>
+        <button class="sw-pill" data-filter="graphic">
+          <span class="pill-dot" style="background:#8b5cf6"></span>
+          Digital Media &amp; Design <span class="pill-count">4</span>
+        </button>
+        <button class="sw-pill saved-filter" data-filter="saved" aria-pressed="false">
+          <span class="pill-dot" style="background:#ec4899"></span>
+          Saved <span class="pill-count" id="savedCourseCount">0</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTROLS BAR ===== -->
+  <div class="controls-bar" id="controlsBar">
+    <div class="container controls-inner">
+      <div class="search-wrap">
+        <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" class="search-input" id="searchInput" placeholder="Search courses, software, careers..." />
+        <button type="button" class="search-clear-btn" id="searchClearBtn" title="Clear search" aria-label="Clear search">
+          <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="controls-right">
+        <select class="ctrl-select" id="industryFilter" aria-label="Filter courses by industry">
+          <option value="all">All Industries</option>
+        </select>
+        <select class="ctrl-select" id="hubFilter" aria-label="Filter courses by production hub">
+          <option value="all">All Production Hubs</option>
+        </select>
+        <select class="ctrl-select" id="sortSelect">
+          <option value="code-az">Sort: Role ID</option>
+          <option value="code-za">Course Code Z &rarr; A</option>
+          <option value="name-az">Name A &rarr; Z</option>
+          <option value="name-za">Name Z &rarr; A</option>
+          <option value="duration-high">Duration &uarr;</option>
+          <option value="duration-low">Duration &darr;</option>
+        </select>
+        <div class="view-toggle">
+          <button class="view-toggle-btn active" id="gridViewBtn" title="Grid View">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          </button>
+          <button class="view-toggle-btn" id="listViewBtn" title="List View">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+          </button>
+        </div>
+        <button class="ctrl-reset" id="resetBtn">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-5"/></svg>
+          Reset
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MAIN VIEWS ===== -->
+  <main class="main-content">
+    <div class="container">
+
+      <!-- ========== VIEW: CATALOG CARDS ========== -->
+      <div id="viewCards" class="view active">
+
+        <div class="results-info">
+          <span id="resultCount">13 courses found</span>
+        </div>
+
+                <div class="roles-grid" id="rolesGrid">
+
+          <!-- 1. 1022 · AD3D Edge PLUS — Animation Specialization -->
+          <article class="role-card" data-family="3danim" data-name="1022 AD3D Edge PLUS Animation Specialization" data-duration="12.5" data-hrs="602" data-hubs="Chennai|Mumbai|Bengaluru|Hyderabad|Pune">
+            <div class="card-top">
+              <div class="role-id-badge mono">9102-AD3DEP-A-1022</div>
+              <div class="suite-pill" style="--suite-color:#06b6d4;--suite-bg:rgba(6,182,212,0.12);">3D Animation</div>
+            </div>
+            <div class="role-accent"></div>
+            <h3 class="role-title">1022 · AD3D Edge PLUS — Animation Specialization</h3>
+            <p class="role-industries">3D Character Animation · Rigging · Acting · LookDev · VFX</p>
+            <p class="role-desc">Advanced pipeline covering Maya character animation, 3ds Max modeling, Substance texturing, Arnold &amp; V-Ray rendering, XGen grooming and Unreal Engine integration.</p>
+            <div class="role-tools">
+              <span class="tool-chip">Maya</span><span class="tool-chip">3ds Max</span><span class="tool-chip">XGen</span><span class="tool-chip">Substance Painter</span><span class="tool-chip">Arnold</span><span class="tool-chip">V-Ray</span><span class="tool-chip">Unreal Engine</span><span class="tool-chip">Storyboarder</span>
+            </div>
+            <div class="role-meta">
+              <span class="meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 12.5 Months · 602 Hrs</span>
+            </div>
+            <div class="role-footer">
+              <div class="career-tags">
+                <span class="career-tag">3D Character Animator</span><span class="career-tag">Character Rigger</span><span class="career-tag">Look Dev Artist</span>
+              </div>
+              <button class="btn-card-details" type="button" aria-label="View Course Blueprint">
+                <span>View Blueprint</span>
+                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </button>
+            </div>
+          </article>
+
+          <!-- 2. 1021 · 3D and Realtime Design Plus -->
+          <article class="role-card" data-family="3danim" data-name="1021 3D and Realtime Design Plus" data-duration="8" data-hrs="384" data-hubs="Chennai|Bengaluru|Hyderabad|Pune|Mumbai">
+            <div class="card-top">
+              <div class="role-id-badge mono">9102-3DRTD-1021</div>
+              <div class="suite-pill" style="--suite-color:#06b6d4;--suite-bg:rgba(6,182,212,0.12);">3D Animation</div>
+            </div>
+            <div class="role-accent"></div>
+            <h3 class="role-title">1021 · 3D and Realtime Design Plus</h3>
+            <p class="role-industries">Real-time 3D · Virtual Production · Environment Art · Game Art</p>
+            <p class="role-desc">Real-time environment art &amp; digital twin pipeline: Unreal Engine 5 Nanite/Lumen, ZBrush sculpting, Marvelous Designer cloth sim, Maya asset modeling &amp; Substance texturing.</p>
+            <div class="role-tools">
+              <span class="tool-chip">Maya</span><span class="tool-chip">ZBrush</span><span class="tool-chip">Marvelous Designer</span><span class="tool-chip">Unreal Engine 5</span><span class="tool-chip">Substance 3D</span><span class="tool-chip">Quixel Megascans</span>
+            </div>
+            <div class="role-meta">
+              <span class="meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 8 Months · 384 Hrs</span>
+            </div>
+            <div class="role-footer">
+              <div class="career-tags">
+                <span class="career-tag">Realtime 3D Artist</span><span class="career-tag">Environment Artist</span><span class="career-tag">Unreal Engine Developer</span>
+              </div>
+              <button class="btn-card-details" type="button" aria-label="View Course Blueprint">
+                <span>View Blueprint</span>
+                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </button>
+            </div>
+          </article>
+
+          <!-- 3. 9102 · Blender Pro -->
+          <article class="role-card" data-family="3danim" data-name="9102 Blender Pro" data-duration="4" data-hrs="192" data-hubs="Pan-India Metros|Global Remote|Bengaluru|Mumbai|Chennai|Hyderabad|Delhi NCR|Outsourcing Studios">
+            <div class="card-top">
+              <div class="role-id-badge mono">9102-BLENDER-PRO</div>
+              <div class="suite-pill" style="--suite-color:#06b6d4;--suite-bg:rgba(6,182,212,0.12);">3D Animation</div>
+            </div>
+            <div class="role-accent"></div>
+            <h3 class="role-title">9102 · Blender Pro</h3>
+            <p class="role-industries">Open-Source 3D · Character Sculpting · Procedural Modeling · Rendering</p>
+            <p class="role-desc">Complete end-to-end Blender 3D production pipeline: Hard-surface modeling, organic sculpting, procedural Geometry Nodes, character rigging, Cycles &amp; Eevee photorealistic rendering.</p>
+            <div class="role-tools">
+              <span class="tool-chip">Blender 4.x</span><span class="tool-chip">Geometry Nodes</span><span class="tool-chip">Cycles</span><span class="tool-chip">Eevee</span><span class="tool-chip">Grease Pencil</span><span class="tool-chip">Substance Painter</span>
+            </div>
+            <div class="role-meta">
+              <span class="meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 4 Months · 192 Hrs</span>
+            </div>
+            <div class="role-footer">
+              <div class="career-tags">
+                <span class="career-tag">Blender 3D Artist</span><span class="career-tag">3D Modeler</span><span class="career-tag">Procedural Artist</span>
+              </div>
+              <button class="btn-card-details" type="button" aria-label="View Course Blueprint">
+                <span>View Blueprint</span>
+                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </button>
+            </div>
+          </article>
+
+          <!-- 4. 1022 · MayaPro — Animation Specialization -->
+          <article class="role-card" data-family="3danim" data-name="1022 MayaPro Animation Specialization" data-duration="4" data-hrs="192" data-hubs="Chennai|Mumbai|Bengaluru|Hyderabad|Pune">
+            <div class="card-top">
+              <div class="role-id-badge mono">9102-MayaPro-A-1022</div>
+              <div class="suite-pill" style="--suite-color:#06b6d4;--suite-bg:rgba(6,182,212,0.12);">3D Animation</div>
+            </div>
+            <div class="role-accent"></div>
+            <h3 class="role-title">1022 · MayaPro — Animation Specialization</h3>
+            <p class="role-industries">Character Animation · Facial Acting · Lip Sync · MoCap Cleanup</p>
+            <p class="role-desc">Dedicated character animation mastery in Autodesk Maya: Body mechanics, dynamic locomotion, quadruped animation, facial expressions, lip sync and MotionBuilder mocap data retargeting.</p>
+            <div class="role-tools">
+              <span class="tool-chip">Autodesk Maya</span><span class="tool-chip">MotionBuilder</span><span class="tool-chip">ZBrush</span><span class="tool-chip">Arnold</span><span class="tool-chip">HumanIK</span>
+            </div>
+            <div class="role-meta">
+              <span class="meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 4 Months · 192 Hrs</span>
+            </div>
+            <div class="role-footer">
+              <div class="career-tags">
+                <span class="career-tag">Character Animator</span><span class="career-tag">MoCap Specialist</span><span class="career-tag">Creature Animator</span>
+              </div>
+              <button class="btn-card-details" type="button" aria-label="View Course Blueprint">
+                <span>View Blueprint</span>
+                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </button>
+            </div>
+          </article>
+
+          <!-- 5. 1031 · Compositing and Editing Plus -->
+          <article class="role-card" data-family="vfx" data-name="1031 Compositing and Editing Plus" data-duration="10" data-hrs="480" data-hubs="Mumbai|Chennai|Hyderabad|Bengaluru|Kochi|Pune|Mohali (Major VFX Studios)|Delhi NCR|Remote|Remote Studios">
+            <div class="card-top">
+              <div class="role-id-badge mono">9103-CEP-1031</div>
+              <div class="suite-pill" style="--suite-color:#f59e0b;--suite-bg:rgba(245,158,11,0.12);">VFX &amp; Editing</div>
+            </div>
+            <div class="role-accent"></div>
+            <h3 class="role-title">1031 · Compositing and Editing Plus</h3>
+            <p class="role-industries">Video Editing · Node Compositing · Motion Graphics · Color Grading</p>
+            <p class="role-desc">Comprehensive post-production &amp; VFX pipeline: Multi-track narrative editing in Premiere, node-based compositing in Nuke, motion graphics in After Effects, DI color grading in Resolve and sound mixing in Audition.</p>
+            <div class="role-tools">
+              <span class="tool-chip">Premiere Pro</span><span class="tool-chip">Foundry Nuke</span><span class="tool-chip">After Effects</span><span class="tool-chip">DaVinci Resolve</span><span class="tool-chip">Audition</span><span class="tool-chip">Photoshop</span>
+            </div>
+            <div class="role-meta">
+              <span class="meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 10 Months · 480 Hrs</span>
+            </div>
+            <div class="role-footer">
+              <div class="career-tags">
+                <span class="career-tag">Video Editor</span><span class="career-tag">Nuke Compositor</span><span class="career-tag">Motion Designer</span><span class="career-tag">Colorist</span>
+              </div>
+              <button class="btn-card-details" type="button" aria-label="View Course Blueprint">
+                <span>View Blueprint</span>
+                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </button>
+            </div>
+          </article>
+
+          <!-- 6. 9103 · Motion Graphics Pro -->
+          <article class="role-card" data-family="vfx" data-name="9103 Motion Graphics Pro" data-duration="4" data-hrs="192" data-hubs="Mumbai|Bengaluru|Delhi NCR|Pune|Chennai|Remote|Hyderabad">
+            <div class="card-top">
+              <div class="role-id-badge mono">9103-MG-PRO</div>
+              <div class="suite-pill" style="--suite-color:#f59e0b;--suite-bg:rgba(245,158,11,0.12);">VFX &amp; Motion</div>
+            </div>
+            <div class="role-accent"></div>
+            <h3 class="role-title">9103 · Motion Graphics Pro</h3>
+            <p class="role-industries">Broadcast Motion · Brand Animation · Title Sequences · Kinetic Type</p>
+            <p class="role-desc">Advanced motion design &amp; broadcast graphics: Kinetic typography, 2.5D animation, Cinema 4D 3D motion design, particle simulation, logo stings, commercials, and UI motion sequences.</p>
+            <div class="role-tools">
+              <span class="tool-chip">After Effects</span><span class="tool-chip">Cinema 4D</span><span class="tool-chip">Illustrator</span><span class="tool-chip">Premiere Pro</span><span class="tool-chip">Trapcode Suite</span>
+            </div>
+            <div class="role-meta">
+              <span class="meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 4 Months · 192 Hrs</span>
+            </div>
+            <div class="role-footer">
+              <div class="career-tags">
+                <span class="career-tag">Motion Designer</span><span class="career-tag">Broadcast Designer</span><span class="career-tag">Title Animator</span>
+              </div>
+              <button class="btn-card-details" type="button" aria-label="View Course Blueprint">
+                <span>View Blueprint</span>
+                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </button>
+            </div>
+          </article>
+
+          <!-- 7. 9103 · Advanced Compositing -->
+          <article class="role-card" data-family="vfx" data-name="9103 Advanced Compositing" data-duration="5" data-hrs="240" data-hubs="Chennai|Mumbai|Bengaluru|Hyderabad|Pune|Mohali (Major VFX Studios)">
+            <div class="card-top">
+              <div class="role-id-badge mono">9103-ADV-COMP</div>
+              <div class="suite-pill" style="--suite-color:#f59e0b;--suite-bg:rgba(245,158,11,0.12);">VFX &amp; Compositing</div>
+            </div>
+            <div class="role-accent"></div>
+            <h3 class="role-title">9103 · Advanced Compositing</h3>
+            <p class="role-industries">Feature Film VFX · Deep Compositing · Planar Tracking · Clean Plate Prep</p>
+            <p class="role-desc">Production-grade compositing in Foundry Nuke: Multichannel EXR CG pass integration, advanced blue/green screen keying, planar &amp; 3D camera tracking with Mocha/3DEqualizer, rotoscopy &amp; digital paint cleanup.</p>
+            <div class="role-tools">
+              <span class="tool-chip">Foundry Nuke</span><span class="tool-chip">Mocha Pro</span><span class="tool-chip">Silhouette FX</span><span class="tool-chip">3DEqualizer</span><span class="tool-chip">Photoshop</span>
+            </div>
+            <div class="role-meta">
+              <span class="meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 5 Months · 240 Hrs</span>
+            </div>
+            <div class="role-footer">
+              <div class="career-tags">
+                <span class="career-tag">VFX Compositor</span><span class="career-tag">Roto &amp; Paint / Prep Artist</span><span class="career-tag">Matchmove Artist</span>
+              </div>
+              <button class="btn-card-details" type="button" aria-label="View Course Blueprint">
+                <span>View Blueprint</span>
+                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </button>
+            </div>
+          </article>
+
+          <!-- 8. 9103 · AfterEffects -->
+          <article class="role-card" data-family="vfx" data-name="9103 AfterEffects" data-duration="3" data-hrs="144" data-hubs="Mumbai|Bengaluru|Delhi NCR|Pune|Chennai|Remote|Hyderabad">
+            <div class="card-top">
+              <div class="role-id-badge mono">9103-AE-PRO</div>
+              <div class="suite-pill" style="--suite-color:#f59e0b;--suite-bg:rgba(245,158,11,0.12);">Motion &amp; VFX</div>
+            </div>
+            <div class="role-accent"></div>
+            <h3 class="role-title">9103 · AfterEffects</h3>
+            <p class="role-industries">2D Motion Graphics · Visual Effects · Kinetic Type · Social Media Media</p>
+            <p class="role-desc">Comprehensive Adobe After Effects workflow: Shape animation, mask tracking, expressions coding, 3D layer space, camera motion, chroma keying, color correction and video FX generation.</p>
+            <div class="role-tools">
+              <span class="tool-chip">After Effects</span><span class="tool-chip">Photoshop</span><span class="tool-chip">Illustrator</span><span class="tool-chip">Media Encoder</span>
+            </div>
+            <div class="role-meta">
+              <span class="meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 3 Months · 144 Hrs</span>
+            </div>
+            <div class="role-footer">
+              <div class="career-tags">
+                <span class="career-tag">After Effects Artist</span><span class="career-tag">Motion Designer</span><span class="career-tag">Video Compositor</span>
+              </div>
+              <button class="btn-card-details" type="button" aria-label="View Course Blueprint">
+                <span>View Blueprint</span>
+                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </button>
+            </div>
+          </article>
+
+          <!-- 9. 9103 · Premiere & Audition -->
+          <article class="role-card" data-family="vfx" data-name="9103 Premiere Audition" data-duration="3" data-hrs="144" data-hubs="Mumbai|Chennai|Hyderabad|Bengaluru|Kochi|Pune|Delhi NCR|Remote">
+            <div class="card-top">
+              <div class="role-id-badge mono">9103-PR-AU</div>
+              <div class="suite-pill" style="--suite-color:#f59e0b;--suite-bg:rgba(245,158,11,0.12);">Video &amp; Audio Post</div>
+            </div>
+            <div class="role-accent"></div>
+            <h3 class="role-title">9103 · Premiere &amp; Audition</h3>
+            <p class="role-industries">Film &amp; OTT Editing · Dialogue Restoration · Sound Design · Foley Audio</p>
+            <p class="role-desc">Seamless video editing &amp; audio post-production: Non-linear multi-camera timeline editing, pacing, dynamic trims, dialogue restoration, Foley recording, background music mixing and broadcast loudness compliance.</p>
+            <div class="role-tools">
+              <span class="tool-chip">Premiere Pro</span><span class="tool-chip">Audition</span><span class="tool-chip">Media Encoder</span><span class="tool-chip">Photoshop</span>
+            </div>
+            <div class="role-meta">
+              <span class="meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 3 Months · 144 Hrs</span>
+            </div>
+            <div class="role-footer">
+              <div class="career-tags">
+                <span class="career-tag">Video Editor</span><span class="career-tag">Sound Designer</span><span class="career-tag">Podcast Audio Engineer</span>
+              </div>
+              <button class="btn-card-details" type="button" aria-label="View Course Blueprint">
+                <span>View Blueprint</span>
+                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </button>
+            </div>
+          </article>
+
+          <!-- 10. 9105 · Advanced Program in Digital Media and Design -->
+          <article class="role-card" data-family="graphic" data-name="9105 Advanced Program in Digital Media and Design APDMD" data-duration="16" data-hrs="768" data-hubs="Bengaluru|Mumbai|Delhi NCR|Pune|Remote Global|Hyderabad|Remote">
+            <div class="card-top">
+              <div class="role-id-badge mono">9105-APDMD</div>
+              <div class="suite-pill" style="--suite-color:#8b5cf6;--suite-bg:rgba(139,92,246,0.12);">Digital Media &amp; Design</div>
+            </div>
+            <div class="role-accent"></div>
+            <h3 class="role-title">9105 · Advanced Program in Digital Media and Design</h3>
+            <p class="role-industries">Digital Media · Brand Identity · UI/UX Design · Motion Graphics · Web</p>
+            <p class="role-desc">Premier multi-disciplinary digital media curriculum: Brand identity systems, corporate publication layout, interactive Figma UI/UX prototyping, motion branding, responsive web design and digital portfolio curation.</p>
+            <div class="role-tools">
+              <span class="tool-chip">Photoshop</span><span class="tool-chip">Illustrator</span><span class="tool-chip">InDesign</span><span class="tool-chip">Figma</span><span class="tool-chip">Premiere Pro</span><span class="tool-chip">After Effects</span><span class="tool-chip">HTML5/CSS3</span>
+            </div>
+            <div class="role-meta">
+              <span class="meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 16 Months · 768 Hrs</span>
+            </div>
+            <div class="role-footer">
+              <div class="career-tags">
+                <span class="career-tag">Digital Media Specialist</span><span class="career-tag">UI/UX Designer</span><span class="career-tag">Creative Director</span>
+              </div>
+              <button class="btn-card-details" type="button" aria-label="View Course Blueprint">
+                <span>View Blueprint</span>
+                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </button>
+            </div>
+          </article>
+
+          <!-- 11. 1051 · DGWA Plus -->
+          <article class="role-card" data-family="graphic" data-name="1051 DGWA Plus" data-duration="12" data-hrs="576" data-hubs="Bengaluru|Mumbai|Delhi NCR|Pune|Remote Global|Hyderabad|Remote|Chennai|Kolkata">
+            <div class="card-top">
+              <div class="role-id-badge mono">9105-DGWA-1051</div>
+              <div class="suite-pill" style="--suite-color:#8b5cf6;--suite-bg:rgba(139,92,246,0.12);">Graphic &amp; Web</div>
+            </div>
+            <div class="role-accent"></div>
+            <h3 class="role-title">1051 · DGWA Plus</h3>
+            <p class="role-industries">Graphic Design · Responsive Web · 2D Animation · Interactive Advertising</p>
+            <p class="role-desc">Complete graphic, web and 2D animation syllabus: Editorial design in InDesign, vector graphics in Illustrator, responsive frontend web UI in HTML5/CSS3/JS, and 2D character animation in Adobe Animate.</p>
+            <div class="role-tools">
+              <span class="tool-chip">Photoshop</span><span class="tool-chip">Illustrator</span><span class="tool-chip">InDesign</span><span class="tool-chip">Figma</span><span class="tool-chip">HTML5</span><span class="tool-chip">CSS3</span><span class="tool-chip">JavaScript</span><span class="tool-chip">Animate CC</span>
+            </div>
+            <div class="role-meta">
+              <span class="meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 12 Months · 576 Hrs</span>
+            </div>
+            <div class="role-footer">
+              <div class="career-tags">
+                <span class="career-tag">Graphic Designer</span><span class="career-tag">Web Designer</span><span class="career-tag">2D Animator</span>
+              </div>
+              <button class="btn-card-details" type="button" aria-label="View Course Blueprint">
+                <span>View Blueprint</span>
+                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </button>
+            </div>
+          </article>
+
+          <!-- 12. 1051 · UI/UX Design -->
+          <article class="role-card" data-family="graphic" data-name="1051 UI UX Design" data-duration="4" data-hrs="192" data-hubs="Bengaluru|Pune|Hyderabad|Delhi NCR|Remote|Mumbai|Remote Studios">
+            <div class="card-top">
+              <div class="role-id-badge mono">9105-UIUX-1051</div>
+              <div class="suite-pill" style="--suite-color:#8b5cf6;--suite-bg:rgba(139,92,246,0.12);">UI/UX Design</div>
+            </div>
+            <div class="role-accent"></div>
+            <h3 class="role-title">1051 · UI/UX Design</h3>
+            <p class="role-industries">Product Design · Mobile App UI · Wireframing · UX Research · Design Systems</p>
+            <p class="role-desc">Modern user interface and user experience design: User journey mapping, empathy research, information architecture, low-to-high fidelity wireframing in Figma, interactive micro-animations and usability testing.</p>
+            <div class="role-tools">
+              <span class="tool-chip">Figma</span><span class="tool-chip">Adobe XD</span><span class="tool-chip">Photoshop</span><span class="tool-chip">Illustrator</span><span class="tool-chip">Miro</span><span class="tool-chip">ProtoPie</span>
+            </div>
+            <div class="role-meta">
+              <span class="meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 4 Months · 192 Hrs</span>
+            </div>
+            <div class="role-footer">
+              <div class="career-tags">
+                <span class="career-tag">UI/UX Designer</span><span class="career-tag">Product Designer</span><span class="career-tag">Interaction Designer</span>
+              </div>
+              <button class="btn-card-details" type="button" aria-label="View Course Blueprint">
+                <span>View Blueprint</span>
+                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </button>
+            </div>
+          </article>
+
+          <!-- 13. CGPD -->
+          <article class="role-card" data-family="graphic" data-name="CGPD Core Graphic Design" data-duration="6" data-hrs="288" data-hubs="Bengaluru|Mumbai|Delhi NCR|Pune|Remote Global">
+            <div class="card-top">
+              <div class="role-id-badge mono">9105-CGPD-1051</div>
+              <div class="suite-pill" style="--suite-color:#8b5cf6;--suite-bg:rgba(139,92,246,0.12);">Graphic Design</div>
+            </div>
+            <div class="role-accent"></div>
+            <h3 class="role-title">CGPD · Core Graphic Design</h3>
+            <p class="role-industries">Advertising · Print Media · Brand Packaging · Publication Layout</p>
+            <p class="role-desc">Fundamental and professional graphic design: Vector typography, corporate logo design, digital image editing, advertising layouts, product packaging, brochures, and commercial prepress prep (CMYK/Pantone).</p>
+            <div class="role-tools">
+              <span class="tool-chip">Adobe Photoshop</span><span class="tool-chip">Adobe Illustrator</span><span class="tool-chip">Adobe InDesign</span><span class="tool-chip">CorelDRAW</span>
+            </div>
+            <div class="role-meta">
+              <span class="meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 6 Months · 288 Hrs</span>
+            </div>
+            <div class="role-footer">
+              <div class="career-tags">
+                <span class="career-tag">Graphic Designer</span><span class="career-tag">Packaging Designer</span><span class="career-tag">Prepress Artist</span>
+              </div>
+              <button class="btn-card-details" type="button" aria-label="View Course Blueprint">
+                <span>View Blueprint</span>
+                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </button>
+            </div>
+          </article>
+
+        </div><!-- /roles-grid -->
+
+        <div class="no-results hidden" id="noResults">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <p>No courses match your search.</p>
+          <button class="btn-link" id="clearSearch">Clear filters</button>
+        </div>
+
+      </div><!-- /viewCards -->
+
+      <!-- ========== VIEW: ANALYTICS ========== -->
+      <div id="viewAnalytics" class="view">
+        <div class="analytics-grid">
+
+                    <div class="analytics-panel">
+            <h3 class="panel-title">Course Family Breakdown</h3>
+            <div class="bar-list">
+              <div class="bar-item"><span class="bar-label">VFX &amp; Post-Production (9103)</span><div class="bar-track"><div class="bar-fill" style="width:38%;background:#f59e0b;--w:38%"></div></div><span class="bar-val">5 courses</span></div>
+              <div class="bar-item"><span class="bar-label">3D Animation &amp; Realtime (9102)</span><div class="bar-track"><div class="bar-fill" style="width:31%;background:#06b6d4;--w:31%"></div></div><span class="bar-val">4 courses</span></div>
+              <div class="bar-item"><span class="bar-label">Digital Media &amp; Design (9105)</span><div class="bar-track"><div class="bar-fill" style="width:31%;background:#8b5cf6;--w:31%"></div></div><span class="bar-val">4 courses</span></div>
+            </div>
+          </div>
+
+          <div class="analytics-panel">
+            <h3 class="panel-title">Top Software Tools</h3>
+            <div class="bar-list">
+              <div class="bar-item"><span class="bar-label">Adobe Photoshop</span><div class="bar-track"><div class="bar-fill" style="--w:85%;background:#0284c7"></div></div><span class="bar-val">85%</span></div>
+              <div class="bar-item"><span class="bar-label">Autodesk Maya</span><div class="bar-track"><div class="bar-fill" style="--w:75%;background:#10b981"></div></div><span class="bar-val">75%</span></div>
+              <div class="bar-item"><span class="bar-label">Adobe After Effects</span><div class="bar-track"><div class="bar-fill" style="--w:70%;background:#d946ef"></div></div><span class="bar-val">70%</span></div>
+              <div class="bar-item"><span class="bar-label">Adobe Premiere Pro</span><div class="bar-track"><div class="bar-fill" style="--w:65%;background:#8b5cf6"></div></div><span class="bar-val">65%</span></div>
+              <div class="bar-item"><span class="bar-label">Unreal Engine 5</span><div class="bar-track"><div class="bar-fill" style="--w:55%;background:#6366f1"></div></div><span class="bar-val">55%</span></div>
+              <div class="bar-item"><span class="bar-label">Autodesk 3ds Max</span><div class="bar-track"><div class="bar-fill" style="--w:50%;background:#06b6d4"></div></div><span class="bar-val">50%</span></div>
+              <div class="bar-item"><span class="bar-label">Adobe Audition</span><div class="bar-track"><div class="bar-fill" style="--w:45%;background:#14b8a6"></div></div><span class="bar-val">45%</span></div>
+            </div>
+          </div>
+
+          <div class="analytics-panel full-width">
+            <h3 class="panel-title">Production Domain Coverage</h3>
+            <div class="domain-chips-grid">
+              <div class="domain-chip"><span>3D Modeling &amp; Animation</span><strong>4 tools</strong></div>
+              <div class="domain-chip"><span>Texturing &amp; LookDev</span><strong>5 tools</strong></div>
+              <div class="domain-chip"><span>Rendering &amp; Lighting</span><strong>4 tools</strong></div>
+              <div class="domain-chip"><span>Digital Sculpting</span><strong>3 tools</strong></div>
+              <div class="domain-chip"><span>VFX, Compositing &amp; Matchmove</span><strong>4 tools</strong></div>
+              <div class="domain-chip"><span>Video Editing, Motion &amp; Audio</span><strong>7 tools</strong></div>
+              <div class="domain-chip"><span>2D Animation &amp; Storyboarding</span><strong>3 tools</strong></div>
+              <div class="domain-chip"><span>Graphic Design &amp; Photography</span><strong>5 tools</strong></div>
+              <div class="domain-chip"><span>UI/UX &amp; Web Development</span><strong>11 tools</strong></div>
+              <div class="domain-chip"><span>Game Engines &amp; Creative AI</span><strong>3 tools</strong></div>
+              <div class="domain-chip"><span>3D Cloth &amp; Simulation</span><strong>2 tools</strong></div>
+              <div class="domain-chip"><span>3D Grooming &amp; Instancing</span><strong>2 tools</strong></div>
+              <div class="domain-chip"><span>3D FX &amp; Simulation</span><strong>2 tools</strong></div>
+              <div class="domain-chip"><span>Character Animation &amp; MoCap</span><strong>1 tool</strong></div>
+              <div class="domain-chip"><span>Photogrammetry &amp; Scanning</span><strong>1 tool</strong></div>
+              <div class="domain-chip"><span>3D Motion Graphics &amp; Design</span><strong>2 tools</strong></div>
+              <div class="domain-chip"><span>Architectural &amp; Set Modeling</span><strong>3 tools</strong></div>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- /viewAnalytics -->
+
+      <!-- ========== VIEW: MASTER TABLE ========== -->
+      <div id="viewTable" class="view">
+        <div class="table-wrap">
+          <table class="master-table">
+            <thead>
+              <tr>
+                <th>Course Code</th>
+                <th>Course Family</th>
+                <th>Course Name</th>
+                <th>Duration</th>
+                <th>Hours</th>
+                <th>Key Software Tools</th>
+                <th>Career Options</th>
+                <th style="text-align:center;">Blueprint</th>
+              </tr>
+            </thead>
+                        <tbody>
+              <tr><td class="mono">9102-AD3DEP-A-1022</td><td><span class="suite-chip" style="--c:#06b6d4">3D Animation</span></td><td>1022 · AD3D Edge PLUS — Animation Specialization</td><td>12.5 mo</td><td>602</td><td>Maya, 3ds Max, Substance Painter, Arnold, Unreal Engine</td><td>3D Character Animator, Rigger, LookDev</td><td><button class="table-blueprint-btn" type="button">View Blueprint &rarr;</button></td></tr>
+              <tr><td class="mono">9102-3DRTD-1021</td><td><span class="suite-chip" style="--c:#06b6d4">3D Animation</span></td><td>1021 · 3D and Realtime Design Plus</td><td>8 mo</td><td>384</td><td>Maya, ZBrush, Marvelous Designer, Unreal Engine 5</td><td>Realtime 3D Artist, Environment Artist</td><td><button class="table-blueprint-btn" type="button">View Blueprint &rarr;</button></td></tr>
+              <tr><td class="mono">9102-BLENDER-PRO</td><td><span class="suite-chip" style="--c:#06b6d4">3D Animation</span></td><td>9102 · Blender Pro</td><td>4 mo</td><td>192</td><td>Blender 4.x, Geometry Nodes, Cycles, Eevee</td><td>Blender 3D Artist, 3D Modeler, Procedural Artist</td><td><button class="table-blueprint-btn" type="button">View Blueprint &rarr;</button></td></tr>
+              <tr><td class="mono">9102-MayaPro-A-1022</td><td><span class="suite-chip" style="--c:#06b6d4">3D Animation</span></td><td>1022 · MayaPro — Animation Specialization</td><td>4 mo</td><td>192</td><td>Maya, ZBrush, MotionBuilder, Arnold</td><td>Character Animator, MoCap Artist, Creature TD</td><td><button class="table-blueprint-btn" type="button">View Blueprint &rarr;</button></td></tr>
+              <tr><td class="mono">9103-CEP-1031</td><td><span class="suite-chip" style="--c:#f59e0b">VFX &amp; Editing</span></td><td>1031 · Compositing and Editing Plus</td><td>10 mo</td><td>480</td><td>Premiere Pro, Nuke, After Effects, Resolve, Audition</td><td>Video Editor, Nuke Compositor, Colorist</td><td><button class="table-blueprint-btn" type="button">View Blueprint &rarr;</button></td></tr>
+              <tr><td class="mono">9103-MG-PRO</td><td><span class="suite-chip" style="--c:#f59e0b">VFX &amp; Motion</span></td><td>9103 · Motion Graphics Pro</td><td>4 mo</td><td>192</td><td>After Effects, Cinema 4D, Illustrator, Premiere</td><td>Motion Designer, Broadcast Designer, Title Animator</td><td><button class="table-blueprint-btn" type="button">View Blueprint &rarr;</button></td></tr>
+              <tr><td class="mono">9103-ADV-COMP</td><td><span class="suite-chip" style="--c:#f59e0b">VFX &amp; Compositing</span></td><td>9103 · Advanced Compositing</td><td>5 mo</td><td>240</td><td>Foundry Nuke, Mocha Pro, Silhouette FX, 3DEqualizer</td><td>VFX Compositor, Roto &amp; Paint / Prep Artist, Matchmove Artist</td><td><button class="table-blueprint-btn" type="button">View Blueprint &rarr;</button></td></tr>
+              <tr><td class="mono">9103-AE-PRO</td><td><span class="suite-chip" style="--c:#f59e0b">Motion &amp; VFX</span></td><td>9103 · AfterEffects</td><td>3 mo</td><td>144</td><td>After Effects, Photoshop, Illustrator, Media Encoder</td><td>After Effects Artist, Motion Designer, Compositor</td><td><button class="table-blueprint-btn" type="button">View Blueprint &rarr;</button></td></tr>
+              <tr><td class="mono">9103-PR-AU</td><td><span class="suite-chip" style="--c:#f59e0b">Video &amp; Audio Post</span></td><td>9103 · Premiere &amp; Audition</td><td>3 mo</td><td>144</td><td>Premiere Pro, Audition, Media Encoder</td><td>Video Editor, Sound Designer, Podcast Audio Engineer</td><td><button class="table-blueprint-btn" type="button">View Blueprint &rarr;</button></td></tr>
+              <tr><td class="mono">9105-APDMD</td><td><span class="suite-chip" style="--c:#8b5cf6">Digital Media &amp; Design</span></td><td>9105 · Advanced Program in Digital Media and Design</td><td>16 mo</td><td>768</td><td>Photoshop, Illustrator, InDesign, Figma, Premiere, AE</td><td>Digital Media Specialist, UI/UX Lead, Creative Director</td><td><button class="table-blueprint-btn" type="button">View Blueprint &rarr;</button></td></tr>
+              <tr><td class="mono">9105-DGWA-1051</td><td><span class="suite-chip" style="--c:#8b5cf6">Graphic &amp; Web</span></td><td>1051 · DGWA Plus</td><td>12 mo</td><td>576</td><td>Photoshop, Illustrator, InDesign, Figma, HTML5/CSS3/JS</td><td>Graphic Designer, Web Designer, 2D Animator</td><td><button class="table-blueprint-btn" type="button">View Blueprint &rarr;</button></td></tr>
+              <tr><td class="mono">9105-UIUX-1051</td><td><span class="suite-chip" style="--c:#8b5cf6">UI/UX Design</span></td><td>1051 · UI/UX Design</td><td>4 mo</td><td>192</td><td>Figma, Adobe XD, Photoshop, Illustrator, Miro</td><td>UI/UX Designer, Product Designer, Interaction Designer</td><td><button class="table-blueprint-btn" type="button">View Blueprint &rarr;</button></td></tr>
+              <tr><td class="mono">9105-CGPD-1051</td><td><span class="suite-chip" style="--c:#8b5cf6">Graphic Design</span></td><td>CGPD · Core Graphic Design</td><td>6 mo</td><td>288</td><td>Photoshop, Illustrator, InDesign, CorelDRAW</td><td>Graphic Designer, Packaging Designer, Prepress Artist</td><td><button class="table-blueprint-btn" type="button">View Blueprint &rarr;</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="table-empty-state hidden" id="tableNoResults" role="status" aria-live="polite">
+          <div class="table-empty-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="30" height="30" stroke="currentColor" stroke-width="1.6" fill="none"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+          </div>
+          <h3 id="tableEmptyTitle">No courses match your filters</h3>
+          <p id="tableEmptyMessage">Try another search or show all courses.</p>
+          <button class="shortlist-view-btn" id="clearTableFilters" type="button">Show all courses</button>
+        </div>
+      </div><!-- /viewTable -->
+
+      <!-- ========== VIEW: DOMAINS ========== -->
+      <div id="viewDomains" class="view">
+                <div class="domains-grid-view">
+          <div class="domain-block"><div class="db-icon">🎬</div><h4>2D Animation &amp; Storyboarding</h4><p>Toon Boom Harmony &bull; Storyboarder &bull; Adobe Animate CC</p><span class="db-count">3 tools</span></div>
+          <div class="domain-block"><div class="db-icon">👗</div><h4>3D Cloth &amp; Simulation</h4><p>Marvelous Designer &bull; Blender</p><span class="db-count">2 tools</span></div>
+          <div class="domain-block"><div class="db-icon">🌊</div><h4>3D FX &amp; Simulation</h4><p>Autodesk Maya &bull; Blender</p><span class="db-count">2 tools</span></div>
+          <div class="domain-block"><div class="db-icon">💇</div><h4>3D Grooming &amp; Instancing</h4><p>Autodesk Maya &ndash; XGen &bull; Blender</p><span class="db-count">2 tools</span></div>
+          <div class="domain-block"><div class="db-icon">🧊</div><h4>3D Modeling &amp; Animation</h4><p>Autodesk 3ds Max &bull; Autodesk Maya &bull; Cinema 4D &bull; Blender</p><span class="db-count">4 tools</span></div>
+          <div class="domain-block"><div class="db-icon">📡</div><h4>3D Motion Graphics &amp; Design</h4><p>Cinema 4D &bull; Blender</p><span class="db-count">2 tools</span></div>
+          <div class="domain-block"><div class="db-icon">🏛️</div><h4>Architectural &amp; Set Modeling</h4><p>3ds Max &bull; Maya (Arch-Viz) &bull; Blender</p><span class="db-count">3 tools</span></div>
+          <div class="domain-block"><div class="db-icon">🏃</div><h4>Character Animation &amp; MoCap</h4><p>Autodesk MotionBuilder</p><span class="db-count">1 tool</span></div>
+          <div class="domain-block"><div class="db-icon">🗿</div><h4>Digital Sculpting</h4><p>Maxon ZBrush &bull; Autodesk Mudbox &bull; Blender</p><span class="db-count">3 tools</span></div>
+          <div class="domain-block"><div class="db-icon">🎮</div><h4>Game Engines &amp; Creative AI</h4><p>Unreal Engine 5 &bull; Unity &bull; Creative AI</p><span class="db-count">3 tools</span></div>
+          <div class="domain-block"><div class="db-icon">🎨</div><h4>Graphic Design &amp; Photography</h4><p>Photoshop &bull; Illustrator &bull; InDesign &bull; Lightroom &bull; Dimensions</p><span class="db-count">5 tools</span></div>
+          <div class="domain-block"><div class="db-icon">📸</div><h4>Photogrammetry &amp; Scanning</h4><p>RealityCapture</p><span class="db-count">1 tool</span></div>
+          <div class="domain-block"><div class="db-icon">☀️</div><h4>Rendering &amp; Lighting</h4><p>Arnold &bull; V-Ray &bull; Redshift &bull; Katana</p><span class="db-count">4 tools</span></div>
+          <div class="domain-block"><div class="db-icon">🖌️</div><h4>Texturing &amp; LookDev</h4><p>Substance Painter &bull; Sampler &bull; Stager &bull; Quixel Mixer &bull; Substance Designer</p><span class="db-count">5 tools</span></div>
+          <div class="domain-block"><div class="db-icon">💻</div><h4>UI/UX &amp; Web Development</h4><p>Figma &bull; XD &bull; HTML5 &bull; CSS &bull; Bootstrap &bull; Angular &bull; PHP &bull; WordPress &bull; Dreamweaver &bull; VS Code</p><span class="db-count">11 tools</span></div>
+          <div class="domain-block"><div class="db-icon">⚡</div><h4>VFX, Compositing &amp; Matchmove</h4><p>Foundry Nuke &bull; 3DEqualizer &bull; SynthEyes &bull; Blender</p><span class="db-count">4 tools</span></div>
+          <div class="domain-block"><div class="db-icon">🎥</div><h4>Video Editing, Motion &amp; Audio</h4><p>After Effects &bull; Premiere Pro &bull; Final Cut Pro &bull; DaVinci Resolve &bull; Audition &bull; Rush &bull; Blender</p><span class="db-count">7 tools</span></div>
+        </div>
+      </div><!-- /viewDomains -->
+
+      <!-- ========== VIEW: COURSE COMPARISON ========== -->
+      <div id="viewCompare" class="view">
+        <div id="courseCompareContainer" class="course-compare-view-container"></div>
+      </div><!-- /viewCompare -->
+
+    </div><!-- /container -->
+  </main>
+
+  <!-- ===== CONTACT ===== -->
+  <section class="contact-section" id="contact">
+    <div class="container">
+      <div class="section-header">
+        <div class="eyebrow-pill sm">
+          <span class="pulse-dot"></span>
+          <span>Get In Touch</span>
+        </div>
+        <h2 class="section-title-alt">Start Your <span class="grad-text-cyan">Creative Career</span></h2>
+        <p class="section-desc-alt">Get personalized guidance on which course suits your career goals.</p>
+      </div>
+      <div class="contact-layout">
+        <div class="contact-left">
+          <div class="contact-info-block">
+            <div class="ci-icon">📞</div>
+            <div><h4>Call Us</h4><p>+91 96007 47753</p></div>
+          </div>
+          <div class="contact-info-block">
+            <div class="ci-icon">✉</div>
+            <div><h4>Email Us</h4><p>siddhantechnologies@gmail.com</p></div>
+          </div>
+          <div class="contact-info-block">
+            <div class="ci-icon">📍</div>
+            <div><h4>Headquarters &amp; Hubs</h4><p>Coimbatore &bull; Salem</p></div>
+          </div>
+          <div class="contact-info-block">
+            <div class="ci-icon">⏰</div>
+            <div><h4>Working Hours</h4><p>Mon &ndash; Sat, 9:00 AM &ndash; 6:00 PM</p></div>
+          </div>
+        </div>
+        <form class="contact-form-new" id="contactForm">
+          <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
+          <div class="form-row">
+            <div class="form-field">
+              <label>Your Name</label>
+              <input type="text" name="name" placeholder="Full name" required />
+            </div>
+            <div class="form-field">
+              <label>Phone</label>
+              <input type="tel" name="phone" placeholder="+91 xxxxx xxxxx" />
+            </div>
+          </div>
+          <div class="form-field">
+            <label>Email</label>
+            <input type="email" name="email" placeholder="email@example.com" required />
+          </div>
+          <div class="form-field">
+            <label>Course of Interest</label>
+            <select name="course">
+              <option value="" disabled selected>Select a course family...</option>
+              <option>3D Animation (9102)</option>
+              <option>VFX (9103)</option>
+              <option>Gaming (9104)</option>
+              <option>Graphic Design &amp; Multimedia (9105)</option>
+              <option>Digital Film Making (9106)</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label>Message</label>
+            <textarea name="message" rows="4" placeholder="Tell us about your goals..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-cta-full">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            Send Enquiry
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <div class="brand">
+          <div class="brand-icon">
+            <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+              <path d="M16 2L28 9V23L16 30L4 23V9L16 2Z" fill="url(#fg1)" opacity="0.9"/>
+              <path d="M16 8L24 13V21L16 26L8 21V13L16 8Z" fill="url(#fg2)" opacity="0.6"/>
+              <path d="M16 14L20 17V21L16 24L12 21V17L16 14Z" fill="white" opacity="0.9"/>
+              <defs>
+                <linearGradient id="fg1" x1="4" y1="2" x2="28" y2="30" gradientUnits="userSpaceOnUse"><stop stop-color="#38bdf8"/><stop offset="0.5" stop-color="#6366f1"/><stop offset="1" stop-color="#ec4899"/></linearGradient>
+                <linearGradient id="fg2" x1="8" y1="8" x2="24" y2="26" gradientUnits="userSpaceOnUse"><stop stop-color="#6366f1"/><stop offset="1" stop-color="#ec4899"/></linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <span class="brand-name">SIDDHAN <span>TECHNOLOGIES</span></span>
+        </div>
+        <p>The comprehensive creative technology curriculum covering 3D modeling, VFX, character animation, video editing, motion design, digital audio &amp; Unreal Engine real-time development.</p>
+        <p class="footer-highlight">13 Courses &bull; 32+ Software Tools &bull; 3 Core Production Families</p>
+      </div>
+      <div class="footer-col">
+        <h4>3D, VFX &amp; Engines</h4>
+        <ul>
+          <li><a href="#filterStrip" data-course-tool="Unreal Engine 5">Unreal Engine 5</a></li>
+          <li><a href="#filterStrip" data-course-tool="3ds Max">Autodesk 3ds Max</a></li>
+          <li><a href="#filterStrip" data-course-tool="Maya">Autodesk Maya</a></li>
+          <li><a href="#filterStrip" data-course-tool="Substance">Substance 3D Suite</a></li>
+          <li><a href="#filterStrip" data-course-tool="Nuke">Foundry Nuke</a></li>
+          <li><a href="#filterStrip" data-course-tool="Marvelous Designer">Marvelous Designer</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Post, Video &amp; Audio</h4>
+        <ul>
+          <li><a href="#filterStrip" data-course-tool="Photoshop">Adobe Photoshop</a></li>
+          <li><a href="#filterStrip" data-course-tool="DaVinci Resolve">DaVinci Resolve</a></li>
+          <li><a href="#filterStrip" data-course-tool="Premiere Pro">Adobe Premiere Pro</a></li>
+          <li><a href="#filterStrip" data-course-tool="After Effects">Adobe After Effects</a></li>
+          <li><a href="#filterStrip" data-course-tool="Audition">Adobe Audition</a></li>
+          <li><a href="#filterStrip" data-course-tool="Final Cut Pro">Final Cut Pro</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="../index.html" data-portal-link="hub">Home</a></li>
+          <li><a href="#viewCards" data-course-view="cards" data-course-target="viewCards" data-reset-course-filters="true">Course Catalog</a></li>
+          <li><a href="#viewAnalytics" data-course-view="analytics" data-course-target="viewAnalytics">Software Directory</a></li>
+          <li><a href="#viewDomains" data-course-view="domains" data-course-target="viewDomains">Production Domains</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+          <li style="margin-top: 0.65rem;">
+            <a href="../Career/index.html" class="footer-portal-link" data-portal-link="career">
+              <span>🎯 Explore Career Matrix &rarr;</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; 2026 SIDDHAN TECHNOLOGIES. All Rights Reserved. Curated for 3D Artists, Animators, Editors, Colorists &amp; Technical Directors.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Back to Top -->
+  <button class="btt-btn" id="bttBtn" title="Back to top">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <!-- ===== COURSE DETAIL MODAL ===== -->
+  <div class="modal-overlay" id="courseModal" role="dialog" aria-modal="true" aria-label="Course Details">
+    <div class="modal-box" id="modalBox">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <div class="modal-top-row">
+          <div class="modal-badges">
+            <span class="modal-code mono" id="mCode">9102-AD3DEP-A-1022</span>
+            <span class="modal-suite" id="mSuite">3D ANIMATION</span>
+            <span class="modal-demand" id="mDemand">
+              <span class="pulse-dot" style="width:6px;height:6px;margin-right:4px"></span>
+              <span id="mDemandText">Very High Demand</span>
+            </span>
+          </div>
+          <div class="modal-top-actions">
+            <button class="modal-close-x" id="modalCloseX" title="Close">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <h2 class="modal-title" id="mTitle">Course Title</h2>
+        <p class="modal-industries" id="mIndustries">Industries</p>
+        <div class="modal-divider"></div>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body" id="modalBody">
+
+        <div class="modal-section">
+          <div class="modal-section-label">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            CORE INDUSTRY RESPONSIBILITIES
+          </div>
+          <p class="modal-text" id="mResponsibilities"></p>
+        </div>
+
+        <div class="modal-section">
+          <div class="modal-section-label">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            DAY-IN-THE-LIFE &amp; PRODUCTION WORKFLOW
+          </div>
+          <p class="modal-text" id="mWorkflow"></p>
+        </div>
+
+        <div class="modal-section">
+          <div class="modal-section-label">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            FULL COMPANION SOFTWARE ECOSYSTEM
+          </div>
+          <div class="modal-tools" id="mTools"></div>
+        </div>
+
+        <div class="modal-section modal-portfolio-box">
+          <div class="modal-section-label">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            HIRING PORTFOLIO RECOMMENDATION
+          </div>
+          <p class="modal-text" id="mPortfolio"></p>
+        </div>
+
+        <div class="modal-section">
+          <div class="modal-section-label">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            CAREER OPPORTUNITIES
+          </div>
+          <div class="modal-tools" id="mCareers"></div>
+        </div>
+
+        <div class="modal-section">
+          <div class="modal-section-label">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            KEY PRODUCTION HUBS &amp; MARKETS
+          </div>
+          <p class="modal-text muted" id="mHubs">Mumbai &bull; Chennai &bull; Hyderabad &bull; Bengaluru &bull; Pune &bull; Delhi NCR &bull; Remote</p>
+        </div>
+
+        <div class="modal-section modal-meta-box">
+          <div class="modal-meta-row">
+            <div><strong>Duration:</strong> <span id="mDuration">12.5 Months</span></div>
+            <div><strong>Training Hours:</strong> <span id="mHours">602 Hrs</span></div>
+            <div><strong>Institution:</strong> <span>SIDDHAN TECHNOLOGIES</span></div>
+          </div>
+        </div>
+
+      </div><!-- /modal-body -->
+
+      <!-- Modal Footer -->
+      <div class="modal-footer">
+        <div class="modal-footer-left">
+          <button class="modal-btn-bookmark" id="modalBookmarkBtn" type="button" title="Save Course" aria-label="Save Course" aria-pressed="false">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+          </button>
+        </div>
+        <div class="modal-footer-actions">
+          <button class="modal-btn-pdf" id="modalPdfBtn" type="button" title="Download Official Vector PDF Blueprint">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            PDF Blueprint
+          </button>
+          <button class="modal-btn-copy" id="modalCopyBtn">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copy
+          </button>
+          <button class="modal-btn-close" id="modalClosBtn">Close</button>
+        </div>
+      </div>
+
+    </div><!-- /modal-box -->
+  </div><!-- /modal-overlay -->
+
+  <!-- ===== PRODUCTION DOMAIN DETAILS ===== -->
+  <div class="modal-overlay domain-modal-overlay" id="domainDetailModal" role="dialog" aria-modal="true" aria-labelledby="domainDetailTitle" aria-hidden="true">
+    <div class="modal-box domain-detail-box">
+      <div class="modal-header">
+        <div class="modal-top-row">
+          <div class="modal-badges">
+            <span class="modal-code">Production Domain</span>
+          </div>
+          <button class="modal-close-x" id="domainDetailCloseX" type="button" title="Close" aria-label="Close domain details">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+        <h2 class="modal-title" id="domainDetailTitle">Production Domain</h2>
+        <p class="modal-industries" id="domainDetailSummary"></p>
+        <div class="modal-divider"></div>
+      </div>
+      <div class="modal-body domain-detail-body">
+        <section class="modal-section">
+          <div class="modal-section-label">Related Software</div>
+          <div class="modal-tools" id="domainDetailSoftware"></div>
+        </section>
+        <section class="modal-section">
+          <div class="modal-section-label">Related Courses</div>
+          <div class="modal-tools" id="domainDetailCourses"></div>
+        </section>
+        <section class="modal-section">
+          <div class="modal-section-label">Related Jobs</div>
+          <div class="modal-tools" id="domainDetailJobs"></div>
+        </section>
+      </div>
+      <div class="modal-footer domain-detail-footer">
+        <button class="modal-btn-close" id="domainDetailCloseFooter" type="button">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Saved Course Shortlist -->
+  <div class="modal-overlay" id="savedCoursesModal" role="dialog" aria-modal="true" aria-label="Saved Courses Shortlist">
+    <div class="modal-box saved-courses-box">
+      <div class="sheet-drag-handle" aria-hidden="true"></div>
+      <div class="saved-courses-modal-header">
+        <div>
+          <div class="saved-courses-eyebrow">SIDDHAN TECHNOLOGIES PORTFOLIO</div>
+          <h2 id="savedCoursesModalCount">Saved Courses Shortlist (0)</h2>
+        </div>
+        <button class="modal-close-x" id="savedCoursesModalClose" type="button" title="Close shortlist" aria-label="Close shortlist">
+          <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="saved-course-list" id="savedCoursesList"></div>
+      <div class="saved-courses-modal-footer">
+        <div class="saved-courses-footer-actions">
+          <button class="modal-btn-pdf saved-courses-export-btn" id="savedCoursesPdfBtn" type="button" title="Download saved courses as PDF" disabled>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            Download PDF
+          </button>
+          <button class="saved-shortlist-action" id="savedCoursesPrintBtn" type="button" title="Print saved courses" disabled>
+            <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+            Print
+          </button>
+          <button class="saved-shortlist-action" id="savedCoursesCsvBtn" type="button" disabled>CSV</button>
+          <button class="saved-shortlist-action" id="savedCoursesJsonBtn" type="button" disabled>JSON</button>
+        </div>
+        <button class="saved-courses-clear-btn" id="savedCoursesClearBtn" type="button" disabled>Clear All</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js?v=20261118-9"></script>
+</body>
+</html>
